@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  {{ Jobs.name }}
+    {% for Jobs in Jobs %}
+  {{ Jobs.nameJobs }} {{ Jobs.description }} <a href="">Modifier</a> <br>
+        {% endfor %}
 
 
 
