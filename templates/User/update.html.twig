@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if form %}
+    {{ form_start(form) }}
+    {{ form_row(form.nameJobs) }}
+    {{ form_row(form.description) }}
+
+    <button type="submit">modifier</button>
+    {{ form_end(form) }}
+{% endif %}
+{% endblock %}

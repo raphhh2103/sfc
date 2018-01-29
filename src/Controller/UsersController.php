@@ -17,12 +17,17 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsersController extends Controller
 {
+    private $string = 'yolo';
 
     /**
-     * @Route("/former/add", name="former_add")
+     * @Route("/formateur/add", name="former_add")
      */
     public function index(Request $request)
     {
+
+
+
+
 
         $user = new Users();
         $user->setLastName('userdefault');
@@ -44,7 +49,11 @@ class UsersController extends Controller
             $em->persist($user);
             $em->flush();
            $id =  $user->getId();
-           $link = 'http://localhost:8000/user/update/';
+//            $id = $_POST['id'] ;
+            dump('');
+
+
+           $link = 'localhost:8000/user/update/';
 //            dump($user->getId());
 //            dump(get_current_user());
 //            dump($user->getId());die();
@@ -54,20 +63,55 @@ class UsersController extends Controller
 //            $userJob->setJobs($_SESSION['idjobs']);
 //            $userJob->setSkils($_SESSION['idskills']);
 
-            $code = md5($user->getId().'yolo');
-            dump($code);
+            $code = md5($id.$this->string);
 
 
             return $this->render('formateur/index.html.twig',array('link'=>$link.$code,'form'=>$form->createView(),'user'=>$user->getId(),));
 
         }
 
-
-
-
-
-
         // replace this line with your own code!
         return $this->render('formateur/index.html.twig', array('form'=>$form->createView(),'user'=>$user->getId(),));
+    }
+
+
+
+
+
+    /**
+     * @Route("/user/update/{id}", name="user_update")
+     * @param $id = md5($users->getId() . $this->string)
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function updateAction($id, Request $request,Users $users)
+    {
+        $form = $this->createForm(UserType::class);
+//        dump($_GET['id']);die();
+        if($id  === md5($id.$this->string)) {
+//        $code = $_GET['id'];
+//        dump($code);
+
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+
+
+//            var_dump($users->getId());die;
+
+                $em = $this->getDoctrine()->getManager();
+
+                $em->persist($users);
+                $em->flush();
+
+                return $this->redirectToRoute("home");
+
+            }
+
+            return $this->render(
+                'user/update.html.twig',
+                array('form' => $form->createView())
+            );
+        }
+        return $this->render('user/update.html.twig',array('form'=>$form));
     }
 }
