@@ -39,7 +39,7 @@ class SfcsController extends Controller
 
 //            var_dump($date);die;
             // On enregistre l'utilisateur dans la base
-            $sfcs->setDateCreate(\DateTime::ATOM);
+            $sfcs->setDateCreate(new \DateTime());
             $sfcs->setIsValid(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($sfcs);

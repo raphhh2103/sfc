@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Jobs;
 use App\Form\JobsType;
+use App\Form\ModifJob;
 use App\Repository\JobsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +16,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class JobsController extends Controller
 {
 
-    public function details($id){
-        $repo = $this->getDoctrine()->getRepository("jobs");
-        $jeux = $repo->find($id);
+    /**
+     * @Route("/vueJobs", name="vueJobs")
+     */
+    public function detailsAction(){
+        $repo = $this->getDoctrine()->getRepository("Jobs");
+        $jeux = $repo->findAll();
 
         return $this->render(
             'metier.html.twig',
@@ -42,20 +46,47 @@ class JobsController extends Controller
 
 
             //var_dump($job->getId());die;
-            // On enregistre l'utilisateur dans la base
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($job);
             $em->flush();
 
 
-            return $this->redirectToRoute('metier', [
-                'name' => $job,
-            ]);
+
         }
 
         return $this->render(
             'Admin/createJobs.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+
+    public function updateAction(Jobs $jobs, Request $request)
+    {
+        $form = $this->createForm(ModifJob::class, $jobs);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            //var_dump($job->getId());die;
+            // On enregistre l'utilisateur dans la base
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($jobs);
+            $em->flush();
+
+
+//            return $this->redirectToRoute('metier', [
+//                'name' => $job,
+//            ]);
+        }
+
+        return $this->render(
+            'Admin/modifJobs.html.twig',
+            array('form' => $form->createView())
+        );
+
     }
 }
