@@ -4,7 +4,7 @@ security:
 
     providers:
         database_users:
-            entity: { class: App\Entity\Users, property: username }
+            entity: { class: App\Entity\Users, property: userName }
 
     firewalls:
         dev:

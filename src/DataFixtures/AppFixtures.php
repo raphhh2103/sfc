@@ -32,10 +32,11 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getUserData() as [$fullName, $username, $password, $email, $role]){
+        foreach ($this->getUserData() as [$firstName, $lastName, $UserName, $password, $email, $role]){
             $user = new Users();
-            $user->setfirstName($fullName);
-            $user->setUsername($username);
+            $user->setfirstName($firstName);
+            $user->setLastName($lastName);
+            $user->setUserName($UserName);
             $user->setPassword($this->passwordEncoder->encodePassword($user,$password));
             $user->setEmail($email);
             $user->setRoles($role);
@@ -48,9 +49,9 @@ class AppFixtures extends Fixture
 
     private function getUserData():array {
         return[
-            ['Jane Doe', 'jane_admin', 'kitten', 'jane_admin@symfony.com', ['ROLE_ADMIN']],
-            ['Tom Doe', 'tom_admin', 'kitten', 'tom_admin@symfony.com', ['ROLE_ADMIN']],
-            ['John Doe', 'john_user', 'kitten', 'john_user@symfony.com', ['ROLE_USER']],
+            ['Jane Doe', 'jane_admin', 'jane', 'kitten', 'jane_admin@symfony.com', ['ROLE_ADMIN']],
+            ['Tom Doe', 'tom_admin', 'tom', 'kitten', 'tom_admin@symfony.com', ['ROLE_ADMIN']],
+            ['John Doe', 'john_user', 'john', 'kitten', 'john_user@symfony.com', ['ROLE_USER']],
         ];
     }
 }
