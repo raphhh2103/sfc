@@ -2,6 +2,7 @@
 
 {% block body %}
     {% for Jobs in Jobs %}
+        {{ Jobs.id }}
   {{ Jobs.nameJobs }} {{ Jobs.description }} <a href="{{ path('modifJobs', {"id": Jobs.id}) }}">Modifier</a> <br>
         {% endfor %}
 

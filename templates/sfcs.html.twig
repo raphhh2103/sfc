@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     {% for Scfs in Sfcs %}
-        {{ scfs.nameJobs }} {{ scfs.description }}
-        {{ sfcs.indicatorObservable1 }} {{ sfcs.indicatorObservable2 }} {{ sfcs.indicatorObservable3 }}{{ sfcs.indicatorObservable4 }}
-        {{ sfcs.indicatorGeneric1 }} {{ sfcs.indicatorGeneric2 }} {{ sfcs.indicatorGeneric3 }} {{ sfcs.indicatorGeneric4 }}
-        {#<a href="{{ path('modifJobs', {"id": Jobs.id}) }}">Modifier</a> <br>#}
+        {{ Sfcs.id }}
+
+        {{ Scfs.NameSfc }} {{ Scfs.description }}
+        {{ Scfs.indicatorObservable1 }} {{ Scfs.indicatorObservable2 }} {{ Scfs.indicatorObservable3 }}{{ Scfs.indicatorObservable4 }}
+        {{ Scfs.indicatorGeneric1 }} {{ Scfs.indicatorGeneric2 }} {{ Scfs.indicatorGeneric3 }} {{ Scfs.indicatorGeneric4 }}
+
+        {#{% if  %}#}
+        {#<a href="{{ path('modifSfcs', {"id": Sfcs.id}) }}">Modifier</a> <br>#}
+
     {% endfor %}
 
 

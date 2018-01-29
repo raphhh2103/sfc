@@ -31,6 +31,7 @@ class SfcsController extends Controller
         $repo = $this->getDoctrine()->getRepository(Sfcs::class)
             ->findAll();
 
+
 //        return new Response('Check out this great product: '.$repo->getnameJobs());
 
         return $this->render(
@@ -39,8 +40,40 @@ class SfcsController extends Controller
         );
     }
 
+
     /**
-     * @Route("/createSfc", name="user_registration")
+     * @Route("/modifSfcs/{id}", name="modifSfcs")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function updateAction(Sfcs $jobs, Request $request)
+    {
+        $form = $this->createForm(SFCSType::class, $jobs);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            //var_dump($job->getId());die;
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($jobs);
+            $em->flush();
+
+            return $this->redirectToRoute("vueJobs");
+
+        }
+
+        return $this->render(
+            'Admin/modifSfcs.html.twig',
+            array('form' => $form->createView())
+        );
+
+    }
+
+    /**
+     * @Route("/createSfc", name="createSfc")
      */
     public function registerAction(Request $request)
     {
