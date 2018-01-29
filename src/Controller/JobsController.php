@@ -20,7 +20,7 @@ class JobsController extends Controller
     /**
      * @Route("/vueJobs", name="vueJobs")
      */
-    public function detailsAction(){
+    public function findAllAction(){
         $repo = $this->getDoctrine()->getRepository(Jobs::class)
         ->findAll();
 
@@ -64,7 +64,12 @@ class JobsController extends Controller
         );
     }
 
-
+    /**
+     * @Route("/modifJobs/{id}", name="modifJobs")
+     * @param Jobs $jobs
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
     public function updateAction(Jobs $jobs, Request $request)
     {
         $form = $this->createForm(ModifJob::class, $jobs);
@@ -74,16 +79,14 @@ class JobsController extends Controller
 
 
             //var_dump($job->getId());die;
-            // On enregistre l'utilisateur dans la base
+
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($jobs);
             $em->flush();
 
+            return $this->redirectToRoute("vueJobs");
 
-//            return $this->redirectToRoute('metier', [
-//                'name' => $job,
-//            ]);
         }
 
         return $this->render(

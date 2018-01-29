@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for Scfs in Sfcs %}
+        {{ scfs.nameJobs }} {{ scfs.description }}
+        {{ sfcs.indicatorObservable1 }} {{ sfcs.indicatorObservable2 }} {{ sfcs.indicatorObservable3 }}{{ sfcs.indicatorObservable4 }}
+        {{ sfcs.indicatorGeneric1 }} {{ sfcs.indicatorGeneric2 }} {{ sfcs.indicatorGeneric3 }} {{ sfcs.indicatorGeneric4 }}
+        {#<a href="{{ path('modifJobs', {"id": Jobs.id}) }}">Modifier</a> <br>#}
+    {% endfor %}
+
+
+
+{% endblock %}

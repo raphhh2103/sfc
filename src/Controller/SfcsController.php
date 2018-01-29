@@ -25,6 +25,21 @@ class SfcsController extends Controller
     }
 
     /**
+     * @Route("/vueSfcs", name="vueSfcs")
+     */
+    public function findAllAction(){
+        $repo = $this->getDoctrine()->getRepository(Sfcs::class)
+            ->findAll();
+
+//        return new Response('Check out this great product: '.$repo->getnameJobs());
+
+        return $this->render(
+            'sfcs.html.twig', ['Sfcs' => $repo]
+
+        );
+    }
+
+    /**
      * @Route("/createSfc", name="user_registration")
      */
     public function registerAction(Request $request)
