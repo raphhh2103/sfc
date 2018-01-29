@@ -25,6 +25,7 @@ class UsersController extends Controller
     {
 
         $user = new Users();
+        $user->setLastName('userdefault');
         $user->setPassword('test1234=');
         $user->setUsername('userDefault');
         $user->setFirstName('userDefault');
@@ -47,14 +48,17 @@ class UsersController extends Controller
 //            dump($user->getId());
 //            dump(get_current_user());
 //            dump($user->getId());die();
-            $userJob = new UserJobs();
-            $userJob->setUser($user->getId());
-            $userJob->setFormateur($_SESSION['id']);
-            $userJob->setJobs($_SESSION['idjobs']);
-            $userJob->setSkils($_SESSION['idskills']);
+//            $userJob = new UserJobs();
+//            $userJob->setUser($user->getId());
+//            $userJob->setFormateur($_SESSION['id']);
+//            $userJob->setJobs($_SESSION['idjobs']);
+//            $userJob->setSkils($_SESSION['idskills']);
+
+            $code = md5($user->getId().'yolo');
+            dump($code);
 
 
-            return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'user'=>$user->getId(),));
+            return $this->render('formateur/index.html.twig',array('link'=>$link.$code,'form'=>$form->createView(),'user'=>$user->getId(),));
 
         }
 
