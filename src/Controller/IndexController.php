@@ -41,7 +41,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/Home/index", name="home")
+     * @Route("/Home/index/", name="home")
      */
     public function home()
     {
