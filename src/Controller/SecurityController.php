@@ -22,12 +22,7 @@ class SecurityController extends AbstractController
     {
 
 
-        $var =  $this->render('Security/login.html.twig', [
-            // dernier username saisi (si il y en a un)
-            'last_username' => $helper->getLastUsername(),
-            // La derniere erreur de connexion (si il y en a une)
-            'error' => $helper->getLastAuthenticationError(),
-        ]);
+
         $all = [];
         $repo =  $this->getDoctrine()->getRepository(Users::class);
         $all = $repo->findAll();
@@ -39,12 +34,21 @@ class SecurityController extends AbstractController
            }
             if (isset($all[$i])&&$all[$i]->getUserName() === $helper->getLastUsername()){
               $_SESSION['idUserLogged'] = $all[$i]->getId();
+              $id = $all[$i]->getId();
               dump($_SESSION['idUserLogged']);
               dump('yolooooooo');
+              dump($id);
+              return $this->redirectToRoute('home',array('id'=>$id));
             }
-    }
+         }
 
-        return $var;
+        return  $this->render('Security/login.html.twig', [
+            // dernier username saisi (si il y en a un)
+            'last_username' => $helper->getLastUsername(),
+            // La derniere erreur de connexion (si il y en a une)
+            'error' => $helper->getLastAuthenticationError(),
+        ]);
+
     }
 
     /**

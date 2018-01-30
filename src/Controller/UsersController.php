@@ -64,7 +64,7 @@ class UsersController extends Controller
             dump($user->getId());die();
             $userJob = new UserJobs();
             $userJob->setUser($user->getId());
-            $userJob->setFormateur($_SESSION['id']);
+            $userJob->setFormateur($_SESSION['idUserLogged']);
             $userJob->setJobs($_SESSION['idjobs']);
             $userJob->setSkils($_SESSION['idskills']);
 
