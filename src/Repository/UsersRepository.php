@@ -8,12 +8,14 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class UsersRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Users::class);
     }
 
-    /*
+
     public function findBySomething($value)
     {
         return $this->createQueryBuilder('u')
@@ -24,5 +26,16 @@ class UsersRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
+    /**
+     * @return Users[]
+     */
+    public function getAll(){
+
+        return $this->createQueryBuilder('u')
+            ->where('u.id')
+            ->getQuery()
+            ->getResult();
+
+    }
 }

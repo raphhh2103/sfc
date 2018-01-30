@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -18,12 +21,30 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $helper)
     {
 
-        return $this->render('Security/login.html.twig', [
+
+        $var =  $this->render('Security/login.html.twig', [
             // dernier username saisi (si il y en a un)
             'last_username' => $helper->getLastUsername(),
             // La derniere erreur de connexion (si il y en a une)
             'error' => $helper->getLastAuthenticationError(),
         ]);
+        $all = [];
+        $repo =  $this->getDoctrine()->getRepository(Users::class);
+        $all = $repo->findAll();
+//        dump($all[0]->getId());
+        for($i= 0; $i<= count($all);$i++){
+           if (!isset($all[$i])){
+               $i++;
+               dump('test');
+           }
+            if (isset($all[$i])&&$all[$i]->getUserName() === $helper->getLastUsername()){
+              $_SESSION['idUserLogged'] = $all[$i]->getId();
+              dump($_SESSION['idUserLogged']);
+              dump('yolooooooo');
+            }
+    }
+
+        return $var;
     }
 
     /**

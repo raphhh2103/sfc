@@ -9,15 +9,13 @@ use App\Form\UserType;
 use App\Repository\UsersRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Session\Session;
+
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UsersController extends Controller
@@ -59,14 +57,16 @@ class UsersController extends Controller
 
 
            $link = 'localhost:8000/user/update/';
-//            dump($user->getId());
-//            dump(get_current_user());
-//            dump($user->getId());die();
-//            $userJob = new UserJobs();
-//            $userJob->setUser($user->getId());
-//            $userJob->setFormateur($_SESSION['id']);
-//            $userJob->setJobs($_SESSION['idjobs']);
-//            $userJob->setSkils($_SESSION['idskills']);
+            dump($user->getId());
+
+                dump(get_current_user());
+
+            dump($user->getId());die();
+            $userJob = new UserJobs();
+            $userJob->setUser($user->getId());
+            $userJob->setFormateur($_SESSION['id']);
+            $userJob->setJobs($_SESSION['idjobs']);
+            $userJob->setSkils($_SESSION['idskills']);
 
             $code = md5($id.$this->key);
 

@@ -22,7 +22,7 @@ class Users implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      *
      */
-    private $id;
+    protected $id;
 
 
     /**
