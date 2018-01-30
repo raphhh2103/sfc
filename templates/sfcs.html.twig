@@ -2,17 +2,28 @@
 
 {% block body %}
 
-    {% for Scfs in Sfcs %}
-        {{ Sfcs.id }}
 
-        {{ Scfs.NameSfc }} {{ Scfs.description }}
-        {{ Scfs.indicatorObservable1 }} {{ Scfs.indicatorObservable2 }} {{ Scfs.indicatorObservable3 }}{{ Scfs.indicatorObservable4 }}
-        {{ Scfs.indicatorGeneric1 }} {{ Scfs.indicatorGeneric2 }} {{ Scfs.indicatorGeneric3 }} {{ Scfs.indicatorGeneric4 }}
 
-        {#{% if  %}#}
-        {#<a href="{{ path('modifSfcs', {"id": Sfcs.id}) }}">Modifier</a> <br>#}
+        {% if Sfcs|length > 0 %}
+            <ul>
+            {% for sfcs in Sfcs %}
+                {{ sfcs.id }}
+                {{ sfcs.NameSfc }} {{ sfcs.description }}
+                {{ sfcs.indicatorObservable1 }} {{ sfcs.indicatorObservable2 }} {{ sfcs.indicatorObservable3 }}{{ sfcs.indicatorObservable4 }}
+                {{ sfcs.indicatorGeneric1 }} {{ sfcs.indicatorGeneric2 }} {{ sfcs.indicatorGeneric3 }} {{ sfcs.indicatorGeneric4 }}
+                <a href="{{ path('modifSfcs', {"id": sfcs.id}) }}">Modifier</a> <br>
+                <br>
+            {% endfor %}
+            </ul>
+        {% endif %}
 
-    {% endfor %}
+
+
+
+
+
+
+
 
 
 

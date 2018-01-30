@@ -29,13 +29,15 @@ class SfcsController extends Controller
      */
     public function findAllAction(){
         $repo = $this->getDoctrine()->getRepository(Sfcs::class)
-            ->findAll();
+        ->findAll();
+//        dump($repo);die();
+
 
 
 //        return new Response('Check out this great product: '.$repo->getnameJobs());
 
         return $this->render(
-            'sfcs.html.twig', ['Sfcs' => $repo]
+            'sfcs.html.twig', array('Sfcs' => $repo)
 
         );
     }
@@ -46,9 +48,9 @@ class SfcsController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function updateAction(Sfcs $jobs, Request $request)
+    public function updateAction(Sfcs $sfcs, Request $request)
     {
-        $form = $this->createForm(SFCSType::class, $jobs);
+        $form = $this->createForm(SFCSType::class, $sfcs);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -58,7 +60,7 @@ class SfcsController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($jobs);
+            $em->persist($sfcs);
             $em->flush();
 
             return $this->redirectToRoute("vueJobs");
