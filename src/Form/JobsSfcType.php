@@ -12,6 +12,7 @@ namespace App\Form;
 use App\Entity\Jobs;
 use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
+use App\Entity\Skills;
 use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -39,6 +40,13 @@ class JobsSfcType extends AbstractType
                 "expanded" => false,
                 "multiple" => false,
                 "label" => "Sfc :  "
+            ))
+            ->add('Skills', EntityType::class, array(
+                "class" => Skills::class,
+                "choice_label" => "name",
+                "expanded" => false,
+                "multiple" => false,
+                "label" => "Skills :  "
             ));
 
 

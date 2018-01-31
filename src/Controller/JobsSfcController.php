@@ -47,7 +47,8 @@ class JobsSfcController extends Controller
         $jobSfc->setIndicatorObservable3('IO3');
         $jobSfc->setIndicatorObservable4('IO4');
         $jobSfc->setRequiredLevel('0');
-        $jobSfc->setSkills();
+
+
         $form = $this->createForm(JobsSfcType::class, $jobSfc);
 
 //        $info =  $request->request->get('form');
@@ -90,28 +91,11 @@ class JobsSfcController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            foreach ($jobSfc->getJobs() as $p){
-                $form2 = $this->createFormBuilder($jobSfc)
-                    ->add('Sfc', EntityType::class, array(
-                        "class" => Sfcs::class,
-                        "choice_label" => "indicatorObservable1",
-                        "expanded" => false,
-                        "multiple" => false,
-                        "label" => "Sfc :  "
-                    ));
-                $form2->getForm();
-
-                return $this->render(
-                    'Jobs_Sfcs2.html.twig',
-                    array('form2' => $form2)
-                );
-
-            }
-
-
 
             $em->persist($jobSfc);
             $em->flush();
+
+            return $this->redirectToRoute('');
 
 
 
