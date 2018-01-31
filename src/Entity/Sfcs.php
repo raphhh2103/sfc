@@ -19,6 +19,14 @@ class Sfcs
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length= 128)
+     */
+    private $IconPath;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=128)
      */
     private $NameSfc;
@@ -333,6 +341,24 @@ class Sfcs
     public function setIndicatorGeneric4(string $indicatorGeneric4)
     {
         $this->indicatorGeneric4 = $indicatorGeneric4;
+    }
+
+    /**
+     * @param string $IconPath
+     * @return Sfcs
+     */
+    public function setIconPath(string $IconPath): Sfcs
+    {
+        $this->IconPath = $IconPath;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIconPath(): string
+    {
+        return $this->IconPath;
     }
 
 }
