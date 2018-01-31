@@ -158,7 +158,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorObservable1(): string
+    public function getIndicatorObservable1(): ?string
     {
         return $this->indicatorObservable1;
     }
@@ -174,7 +174,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorObservable2(): string
+    public function getIndicatorObservable2(): ?string
     {
         return $this->indicatorObservable2;
     }
@@ -190,7 +190,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorObservable3(): string
+    public function getIndicatorObservable3(): ?string
     {
         return $this->indicatorObservable3;
     }
@@ -206,7 +206,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorObservable4(): string
+    public function getIndicatorObservable4(): ?string
     {
         return $this->indicatorObservable4;
     }
@@ -222,7 +222,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorGeneric1(): string
+    public function getIndicatorGeneric1(): ?string
     {
         return $this->indicatorGeneric1;
     }
@@ -238,7 +238,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorGeneric2(): string
+    public function getIndicatorGeneric2(): ?string
     {
         return $this->indicatorGeneric2;
     }
@@ -254,7 +254,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorGeneric3(): string
+    public function getIndicatorGeneric3(): ?string
     {
         return $this->indicatorGeneric3;
     }
@@ -270,7 +270,7 @@ class JobsSfc
     /**
      * @return string
      */
-    public function getIndicatorGeneric4(): string
+    public function getIndicatorGeneric4(): ?string
     {
         return $this->indicatorGeneric4;
     }
@@ -286,7 +286,7 @@ class JobsSfc
     /**
      * @return int
      */
-    public function getRequiredLevel(): int
+    public function getRequiredLevel(): ?int
     {
         return $this->requiredLevel;
     }

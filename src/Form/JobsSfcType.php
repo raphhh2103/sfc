@@ -12,9 +12,12 @@ namespace App\Form;
 use App\Entity\Jobs;
 use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
+use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -37,6 +40,8 @@ class JobsSfcType extends AbstractType
                 "multiple" => false,
                 "label" => "Sfc :  "
             ));
+
+
 
 
     }

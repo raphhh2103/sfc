@@ -8,8 +8,10 @@ use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
 use App\Form\JobsSfcType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,6 +22,7 @@ class JobsSfcController extends Controller
      */
     public function index()
     {
+
         // replace this line with your own code!
         return $this->render('@Maker/demoPage.html.twig', [ 'path' => str_replace($this->getParameter('kernel.project_dir').'/', '', __FILE__) ]);
     }
@@ -32,28 +35,22 @@ class JobsSfcController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $var = $this->getDoctrine()->getRepository(Jobs::class);
-        $var2 = $this->getDoctrine()->getRepository(Sfcs::class);
+
 
         $jobSfc = new JobsSfc();
-        $form = $this->createFormBuilder($jobSfc)
-            ->add('Jobs', EntityType::class, array(
-                "class" => Jobs::class,
-                "choice_label" => "nameJobs",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Job :  "
+        $jobSfc->setIndicatorGeneric1('IG1');
+        $jobSfc->setIndicatorGeneric2('IG2');
+        $jobSfc->setIndicatorGeneric3('IG3');
+        $jobSfc->setIndicatorGeneric4('IG4');
+        $jobSfc->setIndicatorObservable1('IO1');
+        $jobSfc->setIndicatorObservable2('IO2');
+        $jobSfc->setIndicatorObservable3('IO3');
+        $jobSfc->setIndicatorObservable4('IO4');
+        $jobSfc->setRequiredLevel('0');
+        $jobSfc->setSkills();
+        $form = $this->createForm(JobsSfcType::class, $jobSfc);
 
-            ))
-            ->add('Sfc', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "NameSfc",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->getForm();
-        $info =  $request->request->get('form');
+//        $info =  $request->request->get('form');
 //        dump($request->request->get('form'));die;
 //        if ( isset($info)) {
 //            foreach ($info as $key => $value) {
@@ -91,18 +88,31 @@ class JobsSfcController extends Controller
          $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-
             $em = $this->getDoctrine()->getManager();
-                          $em->persist($jobSfc);
-                          $em->flush();
+
+            foreach ($jobSfc->getJobs() as $p){
+                $form2 = $this->createFormBuilder($jobSfc)
+                    ->add('Sfc', EntityType::class, array(
+                        "class" => Sfcs::class,
+                        "choice_label" => "indicatorObservable1",
+                        "expanded" => false,
+                        "multiple" => false,
+                        "label" => "Sfc :  "
+                    ));
+                $form2->getForm();
+
+                return $this->render(
+                    'Jobs_Sfcs2.html.twig',
+                    array('form2' => $form2)
+                );
+
+            }
 
 
-            //var_dump($job->getId());die;
 
-//            $em = $this->getDoctrine()->getManager();
-//            $em->persist($jobSfc);
-//
+            $em->persist($jobSfc);
+            $em->flush();
+
 
 
 
