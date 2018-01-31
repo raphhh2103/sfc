@@ -39,7 +39,7 @@ class JobsSfcController extends Controller
         $form = $this->createFormBuilder($jobSfc)
             ->add('Jobs', EntityType::class, array(
                 "class" => Jobs::class,
-                "choice_label" => "id",
+                "choice_label" => "nameJobs",
                 "expanded" => false,
                 "multiple" => false,
                 "label" => "Job :  "
@@ -47,28 +47,61 @@ class JobsSfcController extends Controller
             ))
             ->add('Sfc', EntityType::class, array(
                 "class" => Sfcs::class,
-                "choice_label" => "id",
+                "choice_label" => "NameSfc",
                 "expanded" => false,
                 "multiple" => false,
                 "label" => "Sfc :  "
             ))
             ->getForm();
+        $info =  $request->request->get('form');
+//        dump($request->request->get('form'));die;
+//        if ( isset($info)) {
+//            foreach ($info as $key => $value) {
+//            dump($item);
+//                for ($i = 0; $i <= count($info); $i++) {
+//                    if ($i == $value) {
+//                            dump('test');
+//
+//                        dump( $key,$value);
+//                        if ($key == 'Jobs') {
+//                                dump('test1');
+//                           $jobs =  $this->getDoctrine()->getRepository(Jobs::class)
+//                                ->find($value);
+//                           dump($jobs->getId());
+//                            $jobSfc->setJobs($jobs->getId());
+//                           dump( $jobSfc->getJobs());
+//                        }
+//                        if ($key == 'Sfc'){
+//                            dump('test2');
+//                            $repo = $this->getDoctrine()->getRepository(Jobs::class)
+//                                ->find($value);
+//                            $jobSfc->setSfc($repo->getId());
+//                           dump( $jobSfc->getSfc());
+//                        }
+//                      if($jobSfc->getJobs() && $jobSfc->getSfc() !== null){
+//
+//
+//                      }
+//                    }
+//                }
 
-//        dump($jobSfc);die;
-        $form->handleRequest($request);
+//            }
+//        }
+//die();
+         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($jobSfc);
-
+                          $em->persist($jobSfc);
+                          $em->flush();
 
 
             //var_dump($job->getId());die;
 
 //            $em = $this->getDoctrine()->getManager();
 //            $em->persist($jobSfc);
-//            $em->flush();
+//
 
 
 

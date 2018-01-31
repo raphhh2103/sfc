@@ -17,16 +17,16 @@ class JobsSfc
     private $id;
 
     /**
-     * @var int
-     * @ORM\ManyToOne(targetEntity="App\Entity\Jobs", inversedBy="id")
+     * @var Jobs
+     * @ORM\ManyToOne(targetEntity="App\Entity\Jobs", inversedBy="Jobs")
      * @ORM\JoinColumn(nullable=false)
      *
      */
     private $jobs;
 
     /**
-     * @var int
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sfcs", inversedBy="id")
+     * @var Sfcs
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sfcs", inversedBy="Sfcs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Sfc;
@@ -96,7 +96,7 @@ class JobsSfc
     private $requiredLevel;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Skills", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Skills", inversedBy="Skills")
      * @ORM\JoinColumn(nullable=false)
      */
     private $skills;
@@ -118,35 +118,41 @@ class JobsSfc
     }
 
     /**
-     * @return int
+     * @return Jobs
      */
-    public function getJobs(): ?int
+    public function getJobs()
     {
         return $this->jobs;
     }
 
     /**
-     * @param int $jobs
+     * @param Jobs $jobs
+     * @return Jobs
      */
-    public function setJobs(int $jobs)
+    public function setJobs( $jobs)
     {
         $this->jobs = $jobs;
+
+        return $this->jobs;
     }
 
     /**
-     * @return int
+     * @return Sfcs
      */
-    public function getSfc(): ?int
+    public function getSfc()
     {
         return $this->Sfc;
     }
 
     /**
-     * @param int $Sfc
+     *
+     * @param Sfcs $Sfc
+     * @return Sfcs
      */
-    public function setSfc(int $Sfc)
+    public function setSfc( $Sfc)
     {
         $this->Sfc = $Sfc;
+        return $this->Sfc;
     }
 
     /**
@@ -302,10 +308,12 @@ class JobsSfc
     }
 
     /**
-     * @param mixed $skills
+     * @param Skills $skills
+     * @return Skills
      */
     public function setSkills($skills)
     {
         $this->skills = $skills;
+        return $this->skills;
     }
 }

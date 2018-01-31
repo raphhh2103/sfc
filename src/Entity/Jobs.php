@@ -89,7 +89,7 @@ class Jobs
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId() : ?int
     {
         return $this->id;
     }
@@ -97,7 +97,7 @@ class Jobs
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId($id) :?int
     {
         $this->id = $id;
     }

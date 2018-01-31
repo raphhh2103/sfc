@@ -19,7 +19,7 @@ class Sfcs
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length= 128)
+     * @ORM\Column(type="string", length= 128 , nullable= true)
      */
     private $IconPath;
 
