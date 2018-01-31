@@ -4499,5 +4499,17 @@
     "prefer-stable": false,
     "stability-flags": {
         "symfony/lts": 20
+    },
+    "symfony/asset": {
+        "version": "v4.0.4"
+    },
+    "symfony/webpack-encore-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "a2f276eff6e95ca94be135d2d3e5c1247c6f8807"
+        }
     }
 }
