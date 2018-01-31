@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 
+use App\Entity\Jobs;
 use App\Entity\JobsSfc;
+use App\Entity\Sfcs;
 use App\Form\JobsSfcType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,15 +32,38 @@ class JobsSfcController extends Controller
      */
     public function registerAction(Request $request)
     {
+        $var = $this->getDoctrine()->getRepository(Jobs::class);
+        $var2 = $this->getDoctrine()->getRepository(Sfcs::class);
 
         $jobSfc = new JobsSfc();
-        $form = $this->createForm(JobsSfcType::class, $jobSfc);
+        $form = $this->createFormBuilder($jobSfc)
+            ->add('Jobs', EntityType::class, array(
+                "class" => Jobs::class,
+                "choice_label" => "id",
+                "expanded" => false,
+                "multiple" => false,
+                "label" => "Job :  "
 
+            ))
+            ->add('Sfc', EntityType::class, array(
+                "class" => Sfcs::class,
+                "choice_label" => "id",
+                "expanded" => false,
+                "multiple" => false,
+                "label" => "Sfc :  "
+            ))
+            ->getForm();
 
+//        dump($jobSfc);die;
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dump($jobSfc);die;
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($jobSfc);
+
+
+
             //var_dump($job->getId());die;
 
 //            $em = $this->getDoctrine()->getManager();

@@ -30,14 +30,14 @@ class SecurityController extends AbstractController
         for($i= 0; $i<= count($all);$i++){
            if (!isset($all[$i])){
                $i++;
-               dump('test');
+//               dump('test');
            }
             if (isset($all[$i])&&$all[$i]->getUserName() === $helper->getLastUsername()){
               $_SESSION['idUserLogged'] = $all[$i]->getId();
               $id = $all[$i]->getId();
-              dump($_SESSION['idUserLogged']);
-              dump('yolooooooo');
-              dump($id);
+//              dump($_SESSION['idUserLogged']);
+//              dump('yolooooooo');
+//              dump($id);
               return $this->redirectToRoute('home',array('id'=>$id));
             }
          }
