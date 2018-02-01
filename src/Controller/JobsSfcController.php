@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Jobs;
 use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
+use App\Form\JobsSfcs2Type;
 use App\Form\JobsSfcType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use function Sodium\add;
@@ -56,6 +57,8 @@ class JobsSfcController extends Controller
 
 
         $form = $this->createForm(JobsSfcType::class, $jobSfc);
+
+
 
 //        $info =  $request->request->get('form');
 //        dump($request->request->get('form'));die;
@@ -142,68 +145,15 @@ class JobsSfcController extends Controller
                 $j = $repo->find($j->getId());
                 $repo2 = $this->getDoctrine()->getRepository('App\Entity\Sfcs');
                 $s = $repo2->find($j->getSfc());
+
+        $var = $this->get("doctrine")->findIndicatorById($s);
 //            }
+        dump($var);
         dump($j);
 //        }
-        $form = $this->createFormBuilder($j)
-            ->add('indicatorObservable1', $s, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorObservable1",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorObservable2', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorObservable2",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorObservable3', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorObservable3",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorObservable4', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorObservable4",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorGeneric1', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorGeneric1",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorGeneric2', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorGeneric2",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorGeneric3', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorGeneric3",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('indicatorGeneric4', EntityType::class, array(
-                "class" => Sfcs::class,
-                "choice_label" => "indicatorGeneric4",
-                "expanded" => false,
-                "multiple" => false,
-                "label" => "Sfc :  "
-            ))
-            ->add('save',SubmitType::class ,array('label'=> 'update !'))
-            ->getForm();
+        $form = $this->createForm(JobsSfcs2Type::class, $j);
+        dump($this->getUser());
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 

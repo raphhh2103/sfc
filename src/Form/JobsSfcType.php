@@ -13,7 +13,6 @@ use App\Entity\Jobs;
 use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
 use App\Entity\Skills;
-use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -58,6 +57,7 @@ class JobsSfcType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => JobsSfc::class,
+            'Sfcs' => null,
         ));
     }
 }
