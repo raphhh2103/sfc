@@ -61,17 +61,17 @@ class UsersController extends Controller
 
                 dump(get_current_user());
 
-            dump($user->getId());die();
-            $userJob = new UserJobs();
-            $userJob->setUser($user->getId());
-            $userJob->setFormateur($_SESSION['idUserLogged']);
-            $userJob->setJobs($_SESSION['idjobs']);
-            $userJob->setSkils($_SESSION['idskills']);
+//            dump($user->getId());die();
+//            $userJob = new UserJobs();
+//            $userJob->setUser($user->getId());
+//            $userJob->setFormateur($_SESSION['idUserLogged']);
+//            $userJob->setJobs($_SESSION['idjobs']);
+//            $userJob->setSkils($_SESSION['idskills']);
 
             $code = md5($id.$this->key);
 
 
-            return $this->render('formateur/index.html.twig',array('link'=>$link.$code,'form'=>$form->createView(),'user'=>$user->getId(),));
+            return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'user'=>$user->getId(),));
 
         }
 
@@ -85,21 +85,21 @@ class UsersController extends Controller
 
     /**
      * @Route("/user/update/{id}", name="user_update")
-     * @param id
+     * @param {id}
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function updateAction(UserPasswordEncoderInterface $passwordEncoder, Request $request, Users $users)
     {
-        $url = $request->getPathInfo();
-        $split = str_split($url,13);
-        $code = $split[1].$split[2].$split[3];
-        for ($i = 0; $i<9999999;$i++) {
-            if ($code === md5($i . $this->key)) {
-                dump($i);
-           $repo = $this->getDoctrine()->getRepository('App\Entity\Users');
-                $users = $repo->find($i);
-            }}
+//        $url = $request->getPathInfo();
+//        $split = str_split($url,13);
+//        $code = $split[1].$split[2].$split[3];
+//        for ($i = 0; $i<9999999;$i++) {
+//            if ($code === md5($i . $this->key)) {
+//                dump($i);
+//           $repo = $this->getDoctrine()->getRepository('App\Entity\Users');
+//                $users = $repo->find($i);
+//            }}
         $form = $this->createFormBuilder($users)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
@@ -111,8 +111,8 @@ class UsersController extends Controller
             ->add('save',SubmitType::class ,array('label'=> 'update !'))
             ->getForm();
         $form->handleRequest($request);
-                dump($code);
-                dump($i);
+//                dump($code);
+//                dump($i);
                 if ($form->isSubmitted() && $form->isValid()) {
                     $password = $passwordEncoder->encodePassword($users, $users->getPassword());
                     $users->setPassword($password);
