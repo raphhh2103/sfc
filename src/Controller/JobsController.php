@@ -54,7 +54,8 @@ class JobsController extends Controller
             $em->persist($job);
             $em->flush();
 
-
+           $id =  $job->getId();
+            $id = $_SESSION['idJobs'];
 
         }
 

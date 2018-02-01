@@ -6,7 +6,10 @@ namespace App\Controller;
 use App\Entity\UserJobs;
 use App\Entity\Users;
 use App\Form\UserType;
+use App\Repository\SfcsRepository;
 use App\Repository\UsersRepository;
+use Doctrine\ORM\QueryBuilder;
+use function PHPSTORM_META\type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -43,6 +46,9 @@ class UsersController extends Controller
         ->add('save',SubmitType::class ,array('label'=> 'generate link'))
         ->getForm();
 
+        $repo = $this->getDoctrine()->getRepository('App:Sfcs');
+        $query = $repo->findBySomething('1');
+        dump($query);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
 
@@ -62,11 +68,11 @@ class UsersController extends Controller
                 dump(get_current_user());
 
 //            dump($user->getId());die();
-//            $userJob = new UserJobs();
-//            $userJob->setUser($user->getId());
-//            $userJob->setFormateur($_SESSION['idUserLogged']);
-//            $userJob->setJobs($_SESSION['idjobs']);
-//            $userJob->setSkils($_SESSION['idskills']);
+            $userJob = new UserJobs();
+            $userJob->setUser($user->getId());
+            $userJob->setFormateur($_SESSION['idUserLogged']);
+            $userJob->setJobs($_SESSION['idjobs']);
+            $userJob->setSkils($_SESSION['idskills']);
 
             $code = md5($id.$this->key);
 

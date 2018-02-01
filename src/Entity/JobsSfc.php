@@ -33,7 +33,7 @@ class JobsSfc
 
 
     /**
-     * @var string
+     * @var object
      * @ORM\Column(type="string", length=128)
      *
      */
@@ -156,25 +156,25 @@ class JobsSfc
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getIndicatorObservable1(): ?string
+    public function getIndicatorObservable1(): ?mixed
     {
         return $this->indicatorObservable1;
     }
 
     /**
-     * @param string $indicatorObservable1
+     * @param mixed $indicatorObservable1
      */
-    public function setIndicatorObservable1(string $indicatorObservable1)
+    public function setIndicatorObservable1(mixed $indicatorObservable1)
     {
         $this->indicatorObservable1 = $indicatorObservable1;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getIndicatorObservable2(): ?string
+    public function getIndicatorObservable2(): ?mixed
     {
         return $this->indicatorObservable2;
     }
