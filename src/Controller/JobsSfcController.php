@@ -129,8 +129,6 @@ class JobsSfcController extends Controller
     public function updateAction(Request $request, JobsSfc $j)
     {
 
-        dump($j->getId());
-
 
 //        $url = $request->getPathInfo();
 //        dump($url);
@@ -146,28 +144,51 @@ class JobsSfcController extends Controller
                 $repo2 = $this->getDoctrine()->getRepository('App\Entity\Sfcs');
                 $s = $repo2->find($j->getSfc());
 
-        $var = $this->get("doctrine")->findIndicatorById($s);
-//            }
-        dump($var);
-        dump($j);
+        $j->setIndicatorGeneric1($s->getIndicatorGeneric1());
+        $j->setIndicatorGeneric2($s->getIndicatorGeneric2());
+        $j->setIndicatorGeneric3($s->getIndicatorGeneric3());
+        $j->setIndicatorGeneric4($s->getIndicatorGeneric4());
+
+
+        $j->setIndicatorObservable1($s->getIndicatorObservable1());
+        $j->setIndicatorObservable2($s->getIndicatorObservable2());
+        $j->setIndicatorObservable3($s->getIndicatorObservable3());
+        $j->setIndicatorObservable4($s->getIndicatorObservable4());
+
+
+
+//        $var = $this->get("doctrine")->findIndicatorById($s);
+////            }
+//        dump($var);
+//        dump($j);
 //        }
-        $form = $this->createForm(JobsSfcs2Type::class, $j);
-        dump($this->getUser());
+//        $form = $this->createForm(JobsSfcs2Type::class, $j);
+//        dump($this->getUser());
+//
+//        $form->handleRequest($request);
+//        if ($form->isSubmitted() && $form->isValid()) {
+//
+//            $em = $this->getDoctrine()->getManager();
+//
+//
+//            $em->persist($j);
+//            $em->flush();
+//
+//            return $this->render('Jobs_Sfcs2.html.twig',array('form'=>$form->createView()));
+//        }
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $em = $this->getDoctrine()->getManager();
-
-
-            $em->persist($j);
-            $em->flush();
-
-            return $this->render('Jobs_Sfcs2.html.twig',array('form'=>$form->createView()));
-        }
+        return $this->render('Jobs_Sfcs2.html.twig',array('IG1' => $j->getIndicatorGeneric1(),
+            'IG2' => $j->getIndicatorGeneric2(),
+            'IG3' => $j->getIndicatorGeneric3(),
+            'IG4' => $j->getIndicatorGeneric4(),
+            'IO1' => $j->getIndicatorObservable1(),
+            'IO2' => $j->getIndicatorObservable2(),
+            'IO3' => $j->getIndicatorObservable3(),
+            'IO4' => $j->getIndicatorObservable4(),
 
 
-        return $this->render('Jobs_Sfcs2.html.twig',array('form'=>$form->createView()));
+            ));
 //    return $this->render('Jobs_sfcs2.html.twig');
     }
 }

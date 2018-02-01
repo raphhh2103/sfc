@@ -13,6 +13,7 @@ use App\Entity\Jobs;
 use App\Entity\JobsSfc;
 use App\Entity\Sfcs;
 use App\Entity\Skills;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,18 +29,20 @@ class JobsSfcType extends AbstractType
         $builder
             ->add('Jobs', EntityType::class, array(
                 "class" => Jobs::class,
-                "choice_label" => "id",
+                "choice_label" => "nameJobs",
                 "expanded" => false,
                 "multiple" => false,
                 "label" => "Job :  "
             ))
-                ->add('Sfc', EntityType::class, array(
+            ->add('Sfc', EntityType::class, array(
                 "class" => Sfcs::class,
-                "choice_label" => "id",
+                "choice_label" => "NameSfc",
                 "expanded" => false,
                 "multiple" => false,
                 "label" => "Sfc :  "
             ))
+
+
             ->add('Skills', EntityType::class, array(
                 "class" => Skills::class,
                 "choice_label" => "name",
@@ -57,7 +60,7 @@ class JobsSfcType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => JobsSfc::class,
-            'Sfcs' => null,
+
         ));
     }
 }
