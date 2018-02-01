@@ -26,6 +26,8 @@ class JobsSfcs2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder
             ->add('indicatorObservable1', EntityType::class, array(
                 "class" => Sfcs::class,
@@ -94,7 +96,7 @@ class JobsSfcs2Type extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => JobsSfc::class,
-            'Sfcs' => null,
+            'Sfcs' => 1,
         ));
     }
 }

@@ -143,6 +143,7 @@ class JobsSfcController extends Controller
                 $j = $repo->find($j->getId());
                 $repo2 = $this->getDoctrine()->getRepository('App\Entity\Sfcs');
                 $s = $repo2->find($j->getSfc());
+                $id =$s->getId();
 
         $j->setIndicatorGeneric1($s->getIndicatorGeneric1());
         $j->setIndicatorGeneric2($s->getIndicatorGeneric2());

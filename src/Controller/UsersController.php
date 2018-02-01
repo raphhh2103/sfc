@@ -46,8 +46,6 @@ class UsersController extends Controller
         ->add('save',SubmitType::class ,array('label'=> 'generate link'))
         ->getForm();
 
-        $repo = $this->getDoctrine()->getRepository('App:Sfcs');
-        $query = $repo->findBySomething('1');
         dump($query);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

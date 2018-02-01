@@ -13,11 +13,7 @@ class JobsSfcRepository extends ServiceEntityRepository
         parent::__construct($registry, JobsSfc::class);
     }
 
-    public function findIndicatorById($id){
-        return $this->createQueryBuilder("j")
-            ->where("j.id = :id")->set("id", $id)
-            ->select("j.indicatorObservable1");
-    }
+
     /*
     public function findBySomething($value)
     {

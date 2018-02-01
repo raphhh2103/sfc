@@ -51,6 +51,12 @@ class JobsSfcType extends AbstractType
                 "label" => "Skills :  "
             ));
 
+        //        switch ($builder->get('sfc')){
+//            case 1:
+//                dump($builder->get('sfc'));
+//            break;
+//        }
+
 
 
 
