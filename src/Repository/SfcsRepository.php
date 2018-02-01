@@ -13,16 +13,23 @@ class SfcsRepository extends ServiceEntityRepository
         parent::__construct($registry, Sfcs::class);
     }
 
-    /*
+
     public function findBySomething($value)
     {
+
         return $this->createQueryBuilder('s')
-            ->where('s.something = :value')->setParameter('value', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('indicatorObservable1')
+            ->where('s.id',$value)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+
+//        return $this->createQueryBuilder('s')
+//            ->where('s.something = :value')->setParameter('value', $value)
+//            ->orderBy('s.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
     }
-    */
+
 }

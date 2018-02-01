@@ -33,6 +33,8 @@ class SkillsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($skills);
             $em->flush();
+            $id = $skills->getId();
+            $id = $_SESSION['idSkills'];
 
         }
 
