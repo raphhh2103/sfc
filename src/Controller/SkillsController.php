@@ -28,13 +28,13 @@ class SkillsController extends Controller
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-
+            $skills->setFormerUser($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($skills);
             $em->flush();
             $id = $skills->getId();
-            $id = $_SESSION['idSkills'];
+
 
         }
 

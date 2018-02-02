@@ -33,7 +33,7 @@ class JobsSfc
 
 
     /**
-     * @var object
+     * @var string
      * @ORM\Column(type="string", length=128)
      *
      */
@@ -101,6 +101,16 @@ class JobsSfc
      */
     private $skills;
 
+
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="id")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+
     /**
      * @return mixed
      */
@@ -155,26 +165,27 @@ class JobsSfc
         return $this->Sfc;
     }
 
+
     /**
-     * @return mixed
+     * @return string
      */
-    public function getIndicatorObservable1(): ?mixed
+    public function getIndicatorObservable1(): ?string
     {
         return $this->indicatorObservable1;
     }
 
     /**
-     * @param mixed $indicatorObservable1
+     * @param string $indicatorObservable1
      */
-    public function setIndicatorObservable1(mixed $indicatorObservable1)
+    public function setIndicatorObservable1(string $indicatorObservable1)
     {
         $this->indicatorObservable1 = $indicatorObservable1;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getIndicatorObservable2(): ?mixed
+    public function getIndicatorObservable2(): ?string
     {
         return $this->indicatorObservable2;
     }
@@ -316,4 +327,24 @@ class JobsSfc
         $this->skills = $skills;
         return $this->skills;
     }
+
+    /**
+     * @return Users
+     */
+    public function getUser(): Users
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param Users $user
+     * @return JobsSfc
+     */
+    public function setUser(Users $user): JobsSfc
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
 }

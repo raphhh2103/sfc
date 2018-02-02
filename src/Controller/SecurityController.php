@@ -23,25 +23,26 @@ class SecurityController extends AbstractController
 
 
 
-        $all = [];
-        $repo =  $this->getDoctrine()->getRepository(Users::class);
-        $all = $repo->findAll();
+//        $all = [];
+//        $repo =  $this->getDoctrine()->getRepository(Users::class);
+//        $all = $repo->findAll();
 //        dump($all[0]->getId());
-        for($i= 0; $i<= count($all);$i++){
-           if (!isset($all[$i])){
-               $i++;
+//        for($i= 0; $i<= count($all);$i++){
+//           if (!isset($all[$i])){
+//               $i++;
 //               dump('test');
-           }
-            if (isset($all[$i])&&$all[$i]->getUserName() === $helper->getLastUsername()){
-              $_SESSION['idUserLogged'] = $all[$i]->getId();
-              $id = $all[$i]->getId();
+//           }
+//            if (isset($all[$i])&&$all[$i]->getUserName() === $helper->getLastUsername()){
+//              $_SESSION['idUserLogged'] = $all[$i]->getId();
+//              $id = $all[$i]->getId();
 //              dump($_SESSION['idUserLogged']);
 //              dump('yolooooooo');
 //              dump($id);
-              return $this->redirectToRoute('home',array('id'=>$id));
-            }
-         }
-
+//
+//                dump($_SESSION['idUserLogged']);die();
+//              return $this->redirectToRoute('home',array('id'=>$id));
+//            }
+//         }
         return  $this->render('Security/login.html.twig', [
             // dernier username saisi (si il y en a un)
             'last_username' => $helper->getLastUsername(),

@@ -95,7 +95,7 @@ class SfcsController extends Controller
             $em->persist($sfcs);
             $em->flush();
 
-
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(

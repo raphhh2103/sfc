@@ -12,7 +12,12 @@ class SfcsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Sfcs::class);
     }
+    public function findIndicatorById($id){
+        return $this->createQueryBuilder("j")
+            ->select("j.indicatorObservable1")
+            ->where("j.id = :id")->set("id", $id);
 
+    }
 
     public function findBySomething($value)
     {

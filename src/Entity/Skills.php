@@ -22,6 +22,18 @@ class Skills
      */
     private $name;
 
+
+
+
+
+    /**
+     * @var Users
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="id")
+     * @ORM\Joincolumn(nullable=true)
+     */
+    private $FormerUser;
+
     /**
      * @param mixed $id
      * @return Skills
@@ -57,4 +69,22 @@ class Skills
     {
         return $this->name;
     }
+
+    /**
+     * @return Users
+     */
+    public function getFormerUser(): ?Users
+    {
+        return $this->FormerUser;
+    }
+
+    /**
+     * @param Users $FormerUser
+     */
+    public function setFormerUser(Users $FormerUser)
+    {
+        $this->FormerUser = $FormerUser;
+    }
+
+
 }

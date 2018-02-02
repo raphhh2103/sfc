@@ -17,7 +17,7 @@ class UserJobs
     private $id;
 
     /**
-     * @var int
+     * @var Jobs
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Jobs",inversedBy="id")
      * @ORM\Joincolumn(nullable=false)
@@ -85,10 +85,10 @@ class UserJobs
     }
 
     /**
-     * @param int $formateur
+     * @param Users $formateur
      * @return UserJobs
      */
-    public function setFormateur(int $formateur): UserJobs
+    public function setFormateur(Users $formateur): UserJobs
     {
         $this->formateur = $formateur;
         return $this;
@@ -97,43 +97,43 @@ class UserJobs
     /**
      * @return int
      */
-    public function getFormateur(): int
+    public function getFormateur(): Users
     {
         return $this->formateur;
     }
 
     /**
-     * @param int $skils
-     * @return UserJobs
+     * @param Skills $skils
+     *
      */
-    public function setSkils(int $skils): UserJobs
+    public function setSkils( Skills $skils)
     {
         $this->skils = $skils;
-        return $this;
+
     }
 
     /**
      * @return int
      */
-    public function getSkils(): int
+    public function getSkils() : ?Skills
     {
         return $this->skils;
     }
 
     /**
-     * @param int $Jobs
+     * @param Jobs $Jobs
      * @return UserJobs
      */
-    public function setJobs(int $Jobs): UserJobs
+    public function setJobs(int $Jobs): ?Jobs
     {
         $this->Jobs = $Jobs;
         return $this;
     }
 
     /**
-     * @return int
+     * @return Jobs
      */
-    public function getJobs(): int
+    public function getJobs(): ?Jobs
     {
         return $this->Jobs;
     }

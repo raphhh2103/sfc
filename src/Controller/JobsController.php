@@ -54,9 +54,9 @@ class JobsController extends Controller
             $em->persist($job);
             $em->flush();
 
-           $id =  $job->getId();
-            $id = $_SESSION['idJobs'];
-
+//           $id =  $job->getId();
+//            $id = $_SESSION['idJobs'];
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(
