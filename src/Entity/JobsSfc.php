@@ -101,6 +101,16 @@ class JobsSfc
      */
     private $skills;
 
+
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="id")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+
     /**
      * @return mixed
      */
@@ -154,6 +164,7 @@ class JobsSfc
         $this->Sfc = $Sfc;
         return $this->Sfc;
     }
+
 
     /**
      * @return string
@@ -316,4 +327,24 @@ class JobsSfc
         $this->skills = $skills;
         return $this->skills;
     }
+
+    /**
+     * @return Users
+     */
+    public function getUser(): Users
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param Users $user
+     * @return JobsSfc
+     */
+    public function setUser(Users $user): JobsSfc
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
 }

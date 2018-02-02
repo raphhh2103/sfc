@@ -13,6 +13,17 @@ class SkillsRepository extends ServiceEntityRepository
         parent::__construct($registry, Skills::class);
     }
 
+    public function findskillsById($id){
+        return $this->createQueryBuilder("j")
+            ->select("j.id")
+            ->where("j.FormerUser = :id")->set("id", $id)
+            ->getQuery()
+            ->getResult();
+
+
+    }
+
+
     /*
     public function findBySomething($value)
     {

@@ -53,7 +53,9 @@ class JobsSfcController extends Controller
         $jobSfc->setIndicatorObservable2('IO2');
         $jobSfc->setIndicatorObservable3('IO3');
         $jobSfc->setIndicatorObservable4('IO4');
+        $jobSfc->setUser($this->getUser());
         $jobSfc->setRequiredLevel('0');
+
 
 
         $form = $this->createForm(JobsSfcType::class, $jobSfc);
@@ -157,6 +159,37 @@ class JobsSfcController extends Controller
         $j->setIndicatorObservable4($s->getIndicatorObservable4());
 
 
+        $form = $this->createFormBuilder($j)
+            ->add('indicatorObservable1',TextType::class)
+            ->add('indicatorObservable2',TextType::class)
+            ->add('indicatorObservable3',TextType::class)
+            ->add('indicatorObservable4',TextType::class)
+            ->add('indicatorGeneric1',TextType::class)
+            ->add('indicatorGeneric2',TextType::class)
+            ->add('indicatorGeneric3',TextType::class)
+            ->add('indicatorGeneric4',TextType::class)
+
+
+
+
+
+            ->add('save',SubmitType::class ,array('label'=> 'generate link'))
+            ->getForm();
+
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($j);
+            $em->flush();
+            $id = $j->getId();
+
+
+        }
+//            $id = $_POST['id'] ;
+//            dump($user->getId());
 
 //        $var = $this->get("doctrine")->findIndicatorById($s);
 ////            }
@@ -187,6 +220,7 @@ class JobsSfcController extends Controller
             'IO2' => $j->getIndicatorObservable2(),
             'IO3' => $j->getIndicatorObservable3(),
             'IO4' => $j->getIndicatorObservable4(),
+            'form'=>$form->createView(),
 
 
             ));

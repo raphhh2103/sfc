@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Jobs;
+use App\Entity\Skills;
 use App\Entity\UserJobs;
 use App\Entity\Users;
 use App\Form\UserType;
@@ -11,6 +13,7 @@ use App\Repository\UsersRepository;
 use Doctrine\ORM\QueryBuilder;
 use function PHPSTORM_META\type;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -43,43 +46,52 @@ class UsersController extends Controller
         $user->setRoles(['ROLE_USER']);
         $form = $this->createFormBuilder($user)
         ->add('email',TextType::class)
-        ->add('save',SubmitType::class ,array('label'=> 'generate link'))
-        ->getForm();
-
-        dump($query);
+            ->add('save',SubmitType::class ,array('label'=> 'generate link'))
+            ->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
            $id =  $user->getId();
-//            $id = $_POST['id'] ;
-//            dump($user->getId());
-
-
-           $link = 'localhost:8000/user/update/';
-            dump($user->getId());
-
-                dump(get_current_user());
-
-//            dump($user->getId());die();
             $userJob = new UserJobs();
-            $userJob->setUser($user->getId());
-            $userJob->setFormateur($_SESSION['idUserLogged']);
-            $userJob->setJobs($_SESSION['idjobs']);
-            $userJob->setSkils($_SESSION['idskills']);
+           $form = $this->createFormBuilder($userJob)
+               ->add('Jobs', EntityType::class, array(
+                   "class" => Jobs::class,
+                   "choice_label" => "nameJobs",
+                   "expanded" => false,
+                   "multiple" => false,
+                   "label" => "Jobs :  "
+               ))
+               ->add('save',SubmitType::class,array('label'=> 'save'))
+               ->getForm();
+           $form->handleRequest($request);
+           if ($form->isSubmitted() && $form->isValid()){
+               $userJob->setUser($user->getId());
+               $userJob->setFormateur($this->getUser());
+               $id = $this->getUser()->getId();
+
+               $skills = $this->getDoctrine()->getRepository('App:Skills')->findAll();
+               foreach ($skills as $key=>$value){
+                   for ($i=0; $i<=$key;$i++){
+                       $u =  $value->getFormerUser();
+
+                       if (isset($u) ){
+                           $s =  $this->getDoctrine()->getRepository('App:Skills')->find($value->getId());
+
+                           $userJob->setSkils($s);
+                       }
+                   }
+               }
+               $em->persist($userJob);
+               $em->flush();
+           }
+           $link = 'localhost:8000/user/update/';
 
             $code = md5($id.$this->key);
 
-
             return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'user'=>$user->getId(),));
-
         }
-
-        // replace this line with your own code!
         return $this->render('formateur/index.html.twig', array('form'=>$form->createView(),'user'=>$user->getId(),));
     }
 
@@ -95,15 +107,7 @@ class UsersController extends Controller
      */
     public function updateAction(UserPasswordEncoderInterface $passwordEncoder, Request $request, Users $users)
     {
-//        $url = $request->getPathInfo();
-//        $split = str_split($url,13);
-//        $code = $split[1].$split[2].$split[3];
-//        for ($i = 0; $i<9999999;$i++) {
-//            if ($code === md5($i . $this->key)) {
-//                dump($i);
-//           $repo = $this->getDoctrine()->getRepository('App\Entity\Users');
-//                $users = $repo->find($i);
-//            }}
+
         $form = $this->createFormBuilder($users)
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
