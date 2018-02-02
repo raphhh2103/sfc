@@ -1,9 +1,60 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .container{
+            height: 100%;
+            text-align: center;
+            margin-top: 20%;
+        }
+        .divlog{
+
+            padding-left: 200px;
+
+        }
+        .divregis{
+            padding-left: 200px;
+
+        }
+        .la{
+            background-color: #FFFFFF;
+            height: 50px;
+            width: 50%;
+            padding-top: 10px;
+            border-radius: 20px 20px 20px 20px;
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+
+        }
+
+
+    </style>
+{% endblock %}
+
 {% block body %}
-    <p>index</p>
-    <a href="{{ path('security_login')}}"> Connexion</a>
-    <a href="{{ path('user_registration')}}">register</a>
+
+    <div class="container">
+
+            <div class="form-group row">
+
+                <div class="col-6 divlog">
+                    <div class="la">
+                    <a href="{{ path('security_login')}}" class="login"> Connexion</a>
+                    </div>
+                </div>
+                <div class="col-6 divregis">
+                    <div class="la">
+                    <a href="{{ path('user_registration')}}" class="register">register</a>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
 
 
 {% endblock %}

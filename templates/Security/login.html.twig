@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=320" />
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous">
 
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+          crossorigin="anonymous">
 
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    {#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"#}
+            {#integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"#}
+            {#crossorigin="anonymous"></script>#}
 
-    </script>
+
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         <style>
-            body #login{
-                background-color: #a1c13a;
-                min-height: 1000px;
+            body{
+                background-color: #224f76;
+
             }
-            #form-login{
-                height: 50vh;
+            .login{
+                box-shadow: 1px 1px 15px 15px #a1c13a;
+                background-color: white;
+                border-radius: 20px 20px 20px 20px;
+                text-align: center;
+                margin: auto;
+                border: solid 1px;
+                height: 90%;
+                width: 30%;
+                margin-top: 170px;
             }
-            .legend{
-                margin-top: 500px;
+            #username{
+                width: 50%;
             }
+            #password{
+                width: 50%;
+            }
+            .divN{
+                width: 50%;
+                margin-left: 25%;
+            }
+            .divP{
+                width: 50%;
+                margin-left: 25%;
+            }
+            .inputL{
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            h2{
+                padding-top: 60px;
+                margin-bottom: 60px;
+            }
+
+
         </style>
 
     {% endblock %}
@@ -52,33 +81,67 @@
         </div>
     {% endif %}
 
-        <div class="row" id="login" >
-            <div class="col-md-6 offset-md-3">
-                <div class="col-md-6 offset-md-3" style="background-color: #224f76">
-                    <div class="well">
-                        <form action="{{ path('security_login') }}" method="post" id="form-login">
-                            <fieldset>
-                               <legend class="legend"><i class="fa fa-lock" aria-hidden="true"></i> Connexion</legend>
-                                <div class="form-group" >
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" name="_username" value="{{ last_username }}"
-                                           class="form-control"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Mot de passe</label>
-                                    {#<p>{% if  %}</p>#}
-                                    <input type="password" id="password" name="_password" class="form-control"/>
-                                </div>
-                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
-                                <button type="submit" class="btn btn-danger col-lg-12">
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i> On entre
-                                </button>
-                            </fieldset>
-                        </form>
+
+
+
+    <div class="login">
+
+
+        <form action="{{ path('security_login') }}" method="post" class="Form">
+            <h2>Login</h2>
+
+                <div class="input-group mb-3 divN" >
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="material-icons"  style="font-size:17px;">person</i></span>
                     </div>
+                    {#<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>#}
+                    <input type="text" id="username" name="_username" value="{{ last_username }}"
+                           class="form-control">
                 </div>
-            </div>
-        </div>
+
+                <div class="input-group mb-3 divP">
+                    {#<label for="password">Mot de passe</label>#}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="material-icons" style="font-size:17px;">lock</i></span>
+                    </div>
+                    {#<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>#}
+                    <input type="password" id="password" name="_password" class="form-control">
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                <button type="submit" class="inputL">
+                     Valider
+                </button>
+
+        </form>
+    </div>
+
+        {#<div class="row" id="login" >#}
+            {#<div class="col-md-6 offset-md-3">#}
+                {#<div class="col-md-6 offset-md-3" style="background-color: #224f76">#}
+                    {#<div class="well">#}
+                        {#<form action="{{ path('security_login') }}" method="post" id="form-login">#}
+                            {#<fieldset>#}
+                               {#<legend class="legend"><i class="fa fa-lock" aria-hidden="true"></i> Connexion</legend>#}
+                                {#<div class="form-group" >#}
+                                    {#<label for="username">Username</label>#}
+                                    {#<input type="text" id="username" name="_username" value="{{ last_username }}"#}
+                                           {#class="form-control"/>#}
+                                {#</div>#}
+                                {#<div class="form-group">#}
+                                    {#<label for="password">Mot de passe</label>#}
+                                    {#<p>{% if  %}</p>#}
+                                    {#<input type="password" id="password" name="_password" class="form-control"/>#}
+                                {#</div>#}
+                                {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>#}
+                                {#<button type="submit" class="btn btn-danger col-lg-12">#}
+                                    {#<i class="fa fa-sign-in" aria-hidden="true"></i> On entre#}
+                                {#</button>#}
+                            {#</fieldset>#}
+                        {#</form>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
 {% endblock %}
 

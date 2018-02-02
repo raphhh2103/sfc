@@ -1,14 +1,85 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .create{
+            text-align: center;
+            margin-top: 15%;
+            margin-left: 25%;
+            width: 50%;
+            height: 50%;
+
+        }
+        form{
+            background-color: #FFFFFF;
+            padding-top: 20px;
+            height: 250px;
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+
+        }
+
+
+
+    </style>
+{% endblock %}
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.fullName) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password.first) }}
-    {{ form_row(form.password.second) }}
 
 
 
-    <button type="submit">S'inscrire !</button>
-    {{ form_end(form) }}
+        <div class="create">
+            {{ form_start(form) }}
+            <h2>S'enregister</h2>
+
+            <div class="form-group row">
+
+                <div class="col-6">
+                    {{ form_row(form.firstName) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-6">
+                    {{ form_row(form.lastName) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.password.first) }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-6">
+                    {{ form_row(form.userName) }}
+                </div>
+                <div class="col-6">
+                    {{ form_row(form.password.second) }}
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <button type="submit">S'inscrire !</button>
+            {{ form_end(form) }}
+
+        </div>
+
+
 {% endblock %}
