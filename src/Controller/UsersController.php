@@ -55,7 +55,7 @@ class UsersController extends Controller
             $em->flush();
            $id =  $user->getId();
             $userJob = new UserJobs();
-           $form = $this->createFormBuilder($userJob)
+           $forms = $this->createFormBuilder($userJob)
                ->add('Jobs', EntityType::class, array(
                    "class" => Jobs::class,
                    "choice_label" => "nameJobs",
@@ -65,8 +65,8 @@ class UsersController extends Controller
                ))
                ->add('save',SubmitType::class,array('label'=> 'save'))
                ->getForm();
-           $form->handleRequest($request);
-           if ($form->isSubmitted() && $form->isValid()){
+           $forms->handleRequest($request);
+           if ($forms->isSubmitted() && $forms->isValid()){
                $userJob->setUser($user->getId());
                $userJob->setFormateur($this->getUser());
                $id = $this->getUser()->getId();
@@ -83,14 +83,15 @@ class UsersController extends Controller
                        }
                    }
                }
-               $em->persist($userJob);
-               $em->flush();
+               $ems = $this->getDoctrine()->getManager();
+               $ems->persist($userJob);
+               $ems->flush();
            }
            $link = 'localhost:8000/user/update/';
 
             $code = md5($id.$this->key);
 
-            return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'user'=>$user->getId(),));
+            return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'forms'=>$forms->createView(),'user'=>$user->getId(),));
         }
         return $this->render('formateur/index.html.twig', array('form'=>$form->createView(),'user'=>$user->getId(),));
     }

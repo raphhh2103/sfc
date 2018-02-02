@@ -165,6 +165,8 @@
       <find>dump</find>
       <find>formateur</find>
       <find>User</find>
+      <find>Userjobs</find>
+      <find>Userjob</find>
     </findStrings>
     <replaceStrings>
       <replace>$key</replace>
@@ -878,13 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
           <caret line="43" column="27" lean-forward="false" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Formateur/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
