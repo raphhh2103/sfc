@@ -54,44 +54,12 @@ class UsersController extends Controller
             $em->persist($user);
             $em->flush();
            $id =  $user->getId();
-            $userJob = new UserJobs();
-           $forms = $this->createFormBuilder($userJob)
-               ->add('Jobs', EntityType::class, array(
-                   "class" => Jobs::class,
-                   "choice_label" => "nameJobs",
-                   "expanded" => false,
-                   "multiple" => false,
-                   "label" => "Jobs :  "
-               ))
-               ->add('save',SubmitType::class,array('label'=> 'save'))
-               ->getForm();
-           $forms->handleRequest($request);
-           if ($forms->isSubmitted() && $forms->isValid()){
-               $userJob->setUser($user->getId());
-               $userJob->setFormateur($this->getUser());
-               $id = $this->getUser()->getId();
 
-               $skills = $this->getDoctrine()->getRepository('App:Skills')->findAll();
-               foreach ($skills as $key=>$value){
-                   for ($i=0; $i<=$key;$i++){
-                       $u =  $value->getFormerUser();
-
-                       if (isset($u) ){
-                           $s =  $this->getDoctrine()->getRepository('App:Skills')->find($value->getId());
-
-                           $userJob->setSkils($s);
-                       }
-                   }
-               }
-               $ems = $this->getDoctrine()->getManager();
-               $ems->persist($userJob);
-               $ems->flush();
-           }
            $link = 'localhost:8000/user/update/';
 
             $code = md5($id.$this->key);
 
-            return $this->render('formateur/index.html.twig',array('link'=>$link.$id,'form'=>$form->createView(),'forms'=>$forms->createView(),'user'=>$user->getId(),));
+            return $this->redirect('formateur/createLink/',array('id'=>$user->getId(),));
         }
         return $this->render('formateur/index.html.twig', array('form'=>$form->createView(),'user'=>$user->getId(),));
     }
@@ -128,11 +96,54 @@ class UsersController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($users);
                     $em->flush();
-                    return $this->redirectToRoute("home");
+                    return $this->redirectToRoute("create_link",array($users->getId()));
                 }
                 return $this->render(
                     'user/update.html.twig',
                     array('form' => $form->createView())
                 );
+    }
+    /**
+     * @Route("/former/createLink/{id}", name="create_link")
+     * @param {id}
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function createUserJobsAction(Request $request, Users $user)
+    {
+        $userJob = new UserJobs();
+        $forms = $this->createFormBuilder($userJob)
+            ->add('Jobs', EntityType::class, array(
+                "class" => Jobs::class,
+                "choice_label" => "nameJobs",
+                "expanded" => false,
+                "multiple" => false,
+                "label" => "Jobs :  "
+            ))
+            ->add('save',SubmitType::class,array('label'=> 'save'))
+            ->getForm();
+        $forms->handleRequest($request);
+        if ($forms->isSubmitted() && $forms->isValid()){
+            $userJob->setUser($user->getId());
+            $userJob->setFormateur($this->getUser());
+            $id = $this->getUser()->getId();
+
+            $skills = $this->getDoctrine()->getRepository('App:Skills')->findAll();
+            foreach ($skills as $key=>$value){
+                for ($i=0; $i<=$key;$i++){
+                    $u =  $value->getFormerUser();
+
+                    if (isset($u) ){
+                        $s =  $this->getDoctrine()->getRepository('App:Skills')->find($value->getId());
+
+                        $userJob->setSkils($s);
+                    }
+                }
+            }
+            $ems = $this->getDoctrine()->getManager();
+            $ems->persist($userJob);
+            $ems->flush();
+        }
+        return $this->render('/Formateur/createLink.html.twig',array('forms'=>$forms->createView()));
     }
 }
