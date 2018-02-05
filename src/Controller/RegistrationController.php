@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\UserType;
 use App\Entity\Users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -13,6 +14,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 
 class RegistrationController extends Controller
 {
+    private $codeFormer = '33a375d75e56a8f3ac95646156bbb7a8';
     /**
      * @Route("/register", name="user_registration")
      */
@@ -22,11 +24,13 @@ class RegistrationController extends Controller
         $user = new Users();
         $form = $this->createForm(UserType::class, $user);
 
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+            if ($user->getCode() === $this->codeFormer){
 
             // Par defaut l'utilisateur aura toujours le rôle ROLE_USER
             $user->setRoles(['ROLE_FORMER']);
@@ -37,7 +41,7 @@ class RegistrationController extends Controller
             $em->persist($user);
             $em->flush();
 
-
+            }
             return $this->redirectToRoute('security_login');
         }
 

@@ -67,19 +67,19 @@ class UserJobs
     }
 
     /**
-     * @param int $user
-     * @return UserJobs
+     * @param Users $user
+     *
      */
-    public function setUser(int $user): UserJobs
+    public function setUser(Users $user)
     {
         $this->user = $user;
-        return $this;
+
     }
 
     /**
      * @return int
      */
-    public function getUser(): int
+    public function getUser(): ?Users
     {
         return $this->user;
     }
@@ -122,16 +122,16 @@ class UserJobs
 
     /**
      * @param Jobs $Jobs
-     * @return UserJobs
+     *
      */
-    public function setJobs(int $Jobs): ?Jobs
+    public function setJobs(Jobs $Jobs)
     {
         $this->Jobs = $Jobs;
-        return $this;
+
     }
 
     /**
-     * @return Jobs
+     * @return int
      */
     public function getJobs(): ?Jobs
     {

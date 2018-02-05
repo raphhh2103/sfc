@@ -27,6 +27,13 @@ class Users implements UserInterface, \Serializable
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $code;
+
+
+    /**
+     * @var string
      *
      * @ORM\Column(type="string", length=50)
      *
@@ -198,5 +205,21 @@ class Users implements UserInterface, \Serializable
     public function getUserName(): ?string
     {
         return $this->userName;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode(string $code)
+    {
+        $this->code = $code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
     }
 }
