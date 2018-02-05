@@ -27,6 +27,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UsersController extends Controller
 {
     private $key = '';
+    private $link = 'localhost:8000/user/update/';
 
     /**
      * @Route("/formateur/add", name="former_add")
@@ -55,11 +56,11 @@ class UsersController extends Controller
             $em->flush();
            $id =  $user->getId();
 
-           $link = 'localhost:8000/user/update/';
+           $this->link = 'localhost:8000/user/update/';
 
             $code = md5($id.$this->key);
 
-            return $this->redirect('formateur/createLink/',array('id'=>$user->getId(),));
+            return $this->redirectToRoute('create_link',array('id'=>$id));
         }
         return $this->render('formateur/index.html.twig', array('form'=>$form->createView(),'user'=>$user->getId(),));
     }
@@ -96,7 +97,7 @@ class UsersController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($users);
                     $em->flush();
-                    return $this->redirectToRoute("create_link",array($users->getId()));
+                    return $this->redirectToRoute("create_link",array($users->getId(),));
                 }
                 return $this->render(
                     'user/update.html.twig',
@@ -106,6 +107,7 @@ class UsersController extends Controller
     /**
      * @Route("/former/createLink/{id}", name="create_link")
      * @param {id}
+     * @param {link}
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -124,7 +126,7 @@ class UsersController extends Controller
             ->getForm();
         $forms->handleRequest($request);
         if ($forms->isSubmitted() && $forms->isValid()){
-            $userJob->setUser($user->getId());
+            $userJob->setUser($user);
             $userJob->setFormateur($this->getUser());
             $id = $this->getUser()->getId();
 
@@ -143,7 +145,9 @@ class UsersController extends Controller
             $ems = $this->getDoctrine()->getManager();
             $ems->persist($userJob);
             $ems->flush();
+
+            return $this->redirectToRoute('former_add');
         }
-        return $this->render('/Formateur/createLink.html.twig',array('forms'=>$forms->createView()));
+        return $this->render('/Formateur/createLink.html.twig',array('forms'=>$forms->createView(),'link'=>$this->link.$user->getId()));
     }
 }
