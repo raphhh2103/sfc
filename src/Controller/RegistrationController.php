@@ -42,9 +42,15 @@ class RegistrationController extends Controller
             $em->flush();
 
             }
+            else{
+                $badcode =  'wrong code contact an administrator';
+
+                $this->redirectToRoute('user_registration');
+            }
             return $this->redirectToRoute('security_login');
         }
 
+        $badcode ='';
         return $this->render(
             'security/register.html.twig',
             array('form' => $form->createView())

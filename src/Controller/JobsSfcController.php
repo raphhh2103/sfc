@@ -13,6 +13,7 @@ use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Twig\Tests\Extension\RoutingExtensionTest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -168,6 +169,7 @@ class JobsSfcController extends Controller
             ->add('indicatorGeneric2',TextType::class)
             ->add('indicatorGeneric3',TextType::class)
             ->add('indicatorGeneric4',TextType::class)
+            ->add('requiredLevel',IntegerType::class)
 
 
 
