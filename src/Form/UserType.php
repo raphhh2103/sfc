@@ -55,6 +55,12 @@ class UserType extends AbstractType
                 'first_options'  => array('label' => false, 'attr' => array('placeholder' => 'Password',)),
                 'second_options' => array('label' => false, 'attr' => array('placeholder' => 'Repeat Password',)),
             ))
+            ->add('code',TextType::class,array(
+                'label'=> false,
+                'attr'=>array(
+                    'placeholder'=> 'secret Code'
+                )
+            ))
 
         ;
     }
