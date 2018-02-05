@@ -75,11 +75,7 @@
 <body>
 {% block body %}
 
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey }}
-        </div>
-    {% endif %}
+
 
 
 
@@ -88,6 +84,11 @@
 
 
         <form action="{{ path('security_login') }}" method="post" class="Form">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey }}
+                </div>
+            {% endif %}
             <h2>Login</h2>
 
                 <div class="input-group mb-3 divN" >

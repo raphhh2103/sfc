@@ -5,7 +5,19 @@
 {% endblock %}
 
 {% block body %}
+
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand" href="#">
+            <img src="/assets/image/siteon0-e5814.png" width="30" height="30" alt="">
+            la
+        </a>
+    </nav>
+
     Bienvenue sur l'acceuil {{ app.user.username }} !
+
+
+
+
     <div class="topnav">
         <a class="active" href="{{ path('home') }}">Home</a>
         <a href="{{ path('jobs') }}">créer Jobs</a>
