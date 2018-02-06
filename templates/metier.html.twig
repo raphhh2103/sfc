@@ -2,8 +2,32 @@
 
 {% block body %}
     {% for Jobs in Jobs %}
-        {{ Jobs.id }}
-  {{ Jobs.nameJobs }} {{ Jobs.description }} <a href="{{ path('modifJobs', {"id": Jobs.id}) }}">Modifier</a> <br>
+
+        <div class="container">
+            <h2>métier</h2>
+            <p>touts les métiers et leurs description:</p>
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Métier</th>
+                    <th>Description</th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ Jobs.id }}</td>
+                    <td>{{ Jobs.nameJobs }}</td>
+                    <td>{{ Jobs.description }}</td>
+                    <td><a href="{{ path('modifJobs', {"id": Jobs.id}) }}">Modifier</a></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
         {% endfor %}
 
 
