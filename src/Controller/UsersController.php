@@ -113,6 +113,7 @@ class UsersController extends Controller
      */
     public function createUserJobsAction(Request $request, Users $user)
     {
+        $id = 0;
         $userJob = new UserJobs();
         $forms = $this->createFormBuilder($userJob)
             ->add('Jobs', EntityType::class, array(
@@ -139,6 +140,8 @@ class UsersController extends Controller
                         $s =  $this->getDoctrine()->getRepository('App:Skills')->find($value->getId());
 
                         $userJob->setSkils($s);
+                        $id =  $userJob->getId();
+
                     }
                 }
             }
@@ -148,6 +151,9 @@ class UsersController extends Controller
 
             return $this->redirectToRoute('former_add');
         }
-        return $this->render('/Formateur/createLink.html.twig',array('forms'=>$forms->createView(),'link'=>$this->link.$user->getId()));
+        $id =  $userJob->getId();
+        return $this->render('/Formateur/createLink.html.twig',
+            array('forms'=>$forms->createView(),
+            'link'=>$this->link.$user->getId(),));
     }
 }

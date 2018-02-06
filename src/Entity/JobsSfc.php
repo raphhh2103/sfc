@@ -329,9 +329,9 @@ class JobsSfc
     }
 
     /**
-     * @return Users
+     * @return int
      */
-    public function getUser(): Users
+    public function getUser(): ?Users
     {
         return $this->user;
     }

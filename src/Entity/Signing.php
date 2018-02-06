@@ -17,9 +17,9 @@ class Signing
     private $id;
 
     /**
-     * @var int
+     * @var UserJobs
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\UserJobs", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserJobs", inversedBy="UserJobs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $UserJobs;
@@ -30,5 +30,37 @@ class Signing
      * @ORM\Column(type="date")
      */
     private $date;
+
+    /**
+     * @param UserJobs $UserJobs
+     */
+    public function setUserJobs(UserJobs $UserJobs)
+    {
+        $this->UserJobs = $UserJobs;
+    }
+
+    /**
+     * @return UserJobs
+     */
+    public function getUserJobs(): ?UserJobs
+    {
+        return $this->UserJobs;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate(): \DateTime
+    {
+        return $this->date;
+    }
 
 }
