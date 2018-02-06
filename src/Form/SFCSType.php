@@ -10,6 +10,7 @@ namespace App\Form;
 
 use App\Entity\Sfcs;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,16 +20,76 @@ class SFCSType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('NameSfc', TextType::class)
-            ->add('description', TextType::class)
-            ->add('indicatorObservable1', TextType::class)
-            ->add('indicatorObservable2', TextType::class)
-            ->add('indicatorObservable3', TextType::class)
-            ->add('indicatorObservable4', TextType::class)
-            ->add('indicatorGeneric1', TextType::class)
-            ->add('indicatorGeneric2', TextType::class)
-            ->add('indicatorGeneric3', TextType::class)
-            ->add('indicatorGeneric4', TextType::class)
+            ->add('NameSfc', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'NameSfc',
+                    'class' => '',
+                )
+            ))
+            ->add('description', TextareaType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'description',
+                    'class' => 'description',
+                )
+            ))
+            ->add('indicatorObservable1', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Observable1',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorObservable2', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Observable2',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorObservable3', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Observable3',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorObservable4', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Observable4',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorGeneric1', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Generic1',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorGeneric2', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Generic2',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorGeneric3', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Generic3',
+                    'class' => '',
+                )
+            ))
+            ->add('indicatorGeneric4', TextType::class, array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Generic4',
+                    'class' => '',
+                )
+            ))
 
 
         ;
