@@ -89,7 +89,8 @@ class SigningController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($result);
                 $em->flush();
-
+                $id = $result->getId();
+                $this->redirectToRoute('result_graphic',array('id'=>$id));
             }
 
 
@@ -97,6 +98,27 @@ class SigningController extends Controller
 
 
         return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView()));
+    }
+
+    /**
+     * @Route("result/graphic/{id}", name = "result_graphic")
+     * @param {id}
+     * @return Response
+     */
+    public function ResultForGraphicalAction(Results $result)
+    {
+
+        $value = $result->getValue();
+
+
+
+
+
+
+
+
+
+        return $this->render('result/graphic.html.twig',array('value'=>$value));
     }
 
 
