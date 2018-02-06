@@ -39,15 +39,15 @@ class Results
     /**
      * @return int
      */
-    public function getSigning(): int
+    public function getSigning(): Signing
     {
         return $this->signing;
     }
 
     /**
-     * @param int $signing
+     * @param Signing $signing
      */
-    public function setSigning(int $signing)
+    public function setSigning(Signing $signing)
     {
         $this->signing = $signing;
     }
@@ -69,7 +69,7 @@ class Results
     }
 
     /**
-     * @param JobSfc $JobsSfc
+     * @param JobsSfc $JobSfc
      * @return Results
      */
     public function setJobSfc(JobsSfc $JobSfc): Results

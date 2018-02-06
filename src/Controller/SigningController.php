@@ -31,7 +31,7 @@ class SigningController extends Controller
 
                     $j = $value->getUser();
                         $u = $value;
-                dump($value);
+//                dump($value);
 
                     if ($j->getId() === $this->getUser()->getId()) {
                         dump('2');
@@ -42,9 +42,10 @@ class SigningController extends Controller
                         $em->persist($signing);
                         $em->flush();
                         $result = new Results();
-                        dump($value);
+                        dump($u);
                         $result->setJobSfc($u);
                         $result->setValue(4);
+                        $result->setSigning($signing);
                         $ems = $this->getDoctrine()->getManager();
                         $ems->persist($result);
                         $ems->flush();
