@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+            color: #FFFFFF;
+
+        }
+        .container{
+            text-align: center;
+
+        }
+        thead, tbody{
+            background-color: white;
+            color: #222222;
+        }
+        .tab{
+            margin-top: 150px;
+
+        }
+
+    </style>
+{% endblock %}
+
 {% block body %}
     {% for Jobs in Jobs %}
 
         <div class="container">
+            <div class="tab">
             <h2>métier</h2>
             <p>touts les métiers et leurs description:</p>
             <table class="table table-striped table-bordered">
@@ -27,6 +51,7 @@
 
                 </tbody>
             </table>
+            </div>
         </div>
         {% endfor %}
 
