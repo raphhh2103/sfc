@@ -26,6 +26,7 @@ class JobsType extends AbstractType
                 'label' => false,
                 'attr' => array(
                     'placeholder' => 'nameJobs',
+                    'class' => 'input1',
                 )
             ))
             ->add('description', TextareaType::class, array(

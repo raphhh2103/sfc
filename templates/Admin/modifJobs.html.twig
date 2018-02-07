@@ -1,11 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.nameJobs) }}
-    {{ form_row(form.description) }}
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
 
-    <button type="submit">modifier</button>
-    {{ form_end(form) }}
+        }
+        .login{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+            margin: auto;
+            border: solid 1px;
+            height: 90%;
+            width: 30%;
+            margin-top: 150px;
+        }
+        h2{
+            padding-top: 60px;
+            margin-bottom: 60px;
+        }
+        h3{
+            font-size: medium;
+        }
+        .description{
+            margin-top: 10px;
+        }
+        button{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .input2{
+            height: 150px;
+            width: 50%;
+            margin-top: 15px;
+            resize: none;
+        }
+        .input1{
+            width: 50%;
+        }
+
+
+
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="login">
+        <h2>Modifier le métier</h2>
+        {{ form_start(form) }}
+        <h3>NameJob : </h3>
+        {{ form_row(form.nameJobs) }}
+        <h3 class="description">description : </h3>
+        {{ form_row(form.description) }}
+
+
+        <button type="submit">Modifier</button>
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

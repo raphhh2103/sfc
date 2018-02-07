@@ -79,7 +79,7 @@ class JobsController extends Controller
 
 
 
-//            var_dump($users->getid());die;
+//            var_dump($users->getid());die
 
             $em = $this->getDoctrine()->getManager();
 
