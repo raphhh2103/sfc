@@ -67,7 +67,7 @@ class SigningController extends Controller
 
 
         // replace this line with your own code!
-        return $this->render('result/singning.html.twig',array('id'=>$id));
+        return $this->render('result/singning.html.twig');
     }
 
     /**
@@ -98,7 +98,7 @@ class SigningController extends Controller
 
 
 
-        return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView(),'id'=>$id));
+        return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView()));
     }
 
     /**
