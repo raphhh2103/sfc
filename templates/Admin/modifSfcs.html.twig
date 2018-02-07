@@ -1,19 +1,104 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .login{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+            margin: auto;
+            border: solid 1px;
+            height: 90%;
+            width: 40%;
+            margin-top: 80px;
+            position: relative;
+        }
+
+
+        h2{
+            padding-top: 30px;
+            margin-bottom: 40px;
+        }
+        button{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .description{
+            margin-top: 15px;
+            margin-bottom: 40px;
+            height: 150px;
+            width: 50%;
+            /*margin-top: 15px;*/
+            resize: none;
+        }
+        h3{
+            font-size: smaller;
+        }
+
+        input{
+            width: 70%;
+            margin-bottom: 10px;
+        }
+        .essai{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            margin-left: 15%;
+            height: 50px;
+            width: 100px;
+            border: 1px solid;
+            position: absolute;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+        }
+
+
+
+
+
+
+    </style>
+{% endblock %}
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_row(form.NameSfc) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.indicatorObservable1) }}
-    {{ form_row(form.indicatorObservable2) }}
-    {{ form_row(form.indicatorObservable3) }}
-    {{ form_row(form.indicatorObservable4) }}
-    {{ form_row(form.indicatorGeneric1) }}
-    {{ form_row(form.indicatorGeneric2) }}
-    {{ form_row(form.indicatorGeneric3) }}
-    {{ form_row(form.indicatorGeneric4) }}
+    <div class="essai">
+        <a href="{{ path('home') }}">menu principale</a>
+    </div>
+    <div class="login">
+        {{ form_start(form) }}
+        <h2>Mofifier SFC</h2>
 
+        {{ form_row(form.NameSfc) }}
+        {{ form_row(form.description) }}
 
+        <h3>indicateur observable :</h3>
+        <div class="form-group row">
+            <div class="col-6">
+                {{ form_row(form.indicatorObservable1) }}
 
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
+                {{ form_row(form.indicatorObservable2) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.indicatorObservable3) }}
+
+                {{ form_row(form.indicatorObservable4) }}
+            </div>
+        </div>
+        <h3>indicateur generic :</h3>
+        <div class="form-group row">
+            <div class="col-6">
+                {{ form_row(form.indicatorGeneric1) }}
+                {{ form_row(form.indicatorGeneric2) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.indicatorGeneric3) }}
+                {{ form_row(form.indicatorGeneric4) }}
+            </div>
+
+        </div>
+        <button type="submit">Modifier</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

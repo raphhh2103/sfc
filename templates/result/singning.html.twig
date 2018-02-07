@@ -1,5 +1,69 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .success{
+            margin: auto;
+            margin-top: 25%;
+            text-align: center;
+            width: 20%;
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+        }
+        .login{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+            margin: auto;
+            border: solid 1px;
+            height: 90%;
+            width: 30%;
+            margin-top: 170px;
+        }
+        #username{
+            width: 50%;
+        }
+        #password{
+            width: 50%;
+        }
+        .divN{
+            width: 50%;
+            margin-left: 25%;
+        }
+        .divP{
+            width: 50%;
+            margin-left: 25%;
+        }
+        .inputL{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        h2{
+            padding-top: 60px;
+            margin-bottom: 60px;
+        }
+        .fa-check{
+            color: lightgreen;
+        }
+
+
+    </style>
+
+{% endblock %}
+
 {% block body %}
 
+    <div class="container">
+        <div class="success">
+            <p>bien  enregistrer <i class="fas fa-check"></i></p>
+            <a href="{{ path('result_graphic') }}">retour a l'acceuil</a>
+        </div>
+
+    </div>
 
 {% endblock %}

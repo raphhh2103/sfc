@@ -1,12 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    {{ form_start(forms) }}
-    {{ form_widget(forms) }}
-    {{ form_end(forms) }}
-    <a href="{{ link }}">{{ link }}</a>
-    <a href="{{ path('former_add') }}"><button>add a new student !</button></a>
+{#{% block body %}#}
+    {#{{ form_start(forms) }}#}
+    {#{{ form_widget(forms) }}#}
+    {#{{ form_end(forms) }}#}
+    {#<a href="{{ link }}">{{ link }}</a>#}
+    {#<a href="{{ path('former_add') }}"><button>add a new student !</button></a>#}
 
-    <a href="{{ path('result_signing') }}"><button>next ?</button></a>
+    {#<a href="{{ path('result_signing') }}"><button>next ?</button></a>#}
+
+{#{% endblock %}#}
+
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .login{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+            margin: auto;
+            border: solid 1px;
+            height: 90%;
+            width: 30%;
+            margin-top: 170px;
+        }
+        h2{
+            padding-top: 60px;
+            margin-bottom: 60px;
+        }
+        button{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .input2{
+            height: 150px;
+            width: 50%;
+            margin-top: 15px;
+            resize: none;
+        }
+
+
+
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="login">
+        <h2>User</h2>
+        {{ form_start(forms) }}
+        {#{{ form_widget(forms) }}#}
+        {{ form_row(forms.Jobs) }}
+        <a href="{{ link }}">{{ link }}</a>
+        <a href="{{ path('former_add') }}"><button>add a new student !</button></a>
+        {{ form_row(forms.save) }}
+        {{ form_end(forms) }}
+
+
+
+    </div>
 
 {% endblock %}

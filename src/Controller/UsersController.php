@@ -40,6 +40,7 @@ class UsersController extends Controller
 
 
         $user = new Users();
+        $user->setCode('33a375d75e56a8f3ac95646156bbb7a8');
         $user->setLastName('userdefault');
         $user->setPassword('test1234=');
         $user->setUsername('userDefault');
@@ -149,7 +150,7 @@ class UsersController extends Controller
             $ems->persist($userJob);
             $ems->flush();
 
-            return $this->redirectToRoute('former_add');
+            return $this->redirectToRoute('result_signing');
         }
         $id =  $userJob->getId();
         return $this->render('/Formateur/createLink.html.twig',
