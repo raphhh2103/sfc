@@ -22,6 +22,7 @@ class SigningController extends Controller
      */
     public function index()
     {
+        $id = 0;
         $repo1 = $this->getDoctrine()->getRepository('App:UserJobs')->findAll();
         $userJobs = $repo1;
         $repo = $this->getDoctrine()->getRepository('App:JobsSfc')->findAll();
@@ -66,7 +67,7 @@ class SigningController extends Controller
 
 
         // replace this line with your own code!
-        return $this->render('result/singning.html.twig', ['path' => str_replace($this->getParameter('kernel.project_dir') . '/', '', __FILE__)]);
+        return $this->render('result/singning.html.twig',array('id'=>$id));
     }
 
     /**
@@ -97,7 +98,7 @@ class SigningController extends Controller
 
 
 
-        return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView()));
+        return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView(),'id'=>$id));
     }
 
     /**
