@@ -66,18 +66,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="createLink.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Formateur/createLink.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="e#12#26#0#Twig" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JobsSfc.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/JobsSfc.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -128,14 +116,15 @@
       <file leaf-file-name="SigningController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/SigningController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="120" column="77" lean-forward="false" selection-start-line="120" selection-start-column="77" selection-end-line="120" selection-end-column="77" />
+            <state relative-caret-position="95">
+              <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
               <folding>
                 <element signature="e#698#712#1#PHP" expanded="true" />
                 <element signature="e#806#819#1#PHP" expanded="true" />
                 <element signature="e#2443#2470#0#PHP" expanded="true" />
                 <element signature="e#3381#3411#0#PHP" expanded="true" />
-                <element signature="e#3722#3748#0#PHP" expanded="true" />
+                <element signature="e#4014#4027#1#PHP" expanded="true" />
+                <element signature="e#5214#5240#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,11 +133,11 @@
       <file leaf-file-name="graphic.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/result/graphic.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-451">
-              <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+            <state relative-caret-position="340">
+              <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1517913650734" expanded="true" signature="1208:1228" ph="..." />
+                <marker date="1517989266833" expanded="true" signature="1213:1233" ph="..." />
               </folding>
             </state>
           </provider>
@@ -195,12 +184,14 @@
       <find>Userjobs</find>
       <find>Userjob</find>
       <find>JobsSfc</find>
+      <find>$sfc</find>
     </findStrings>
     <replaceStrings>
       <replace>$key</replace>
       <replace>User</replace>
       <replace>UserIdFormer</replace>
       <replace>JobSfc</replace>
+      <replace>$jobSfc</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -245,8 +236,8 @@
         <option value="$PROJECT_DIR$/src/Entity/JobsSfc.php" />
         <option value="$PROJECT_DIR$/src/Entity/Results.php" />
         <option value="$PROJECT_DIR$/templates/result/formGraphic.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/SigningController.php" />
         <option value="$PROJECT_DIR$/templates/result/graphic.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/SigningController.php" />
       </list>
     </option>
   </component>
@@ -818,18 +809,18 @@
       <workItem from="1517225781534" duration="3480000" />
       <workItem from="1517229551455" duration="60134000" />
       <workItem from="1517483260031" duration="39511000" />
-      <workItem from="1517906414332" duration="7149000" />
+      <workItem from="1517906414332" duration="19206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143367000" />
+    <option name="totallyTimeSpent" value="155424000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25510204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18367347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -934,13 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1070,13 +1054,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="14" column="50" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1228,27 +1205,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/result/graphic.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-451">
-          <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state relative-caret-position="340">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1517913650734" expanded="true" signature="1208:1228" ph="..." />
+            <marker date="1517989266833" expanded="true" signature="1213:1233" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SigningController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="120" column="77" lean-forward="false" selection-start-line="120" selection-start-column="77" selection-end-line="120" selection-end-column="77" />
+        <state relative-caret-position="95">
+          <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
           <folding>
             <element signature="e#698#712#1#PHP" expanded="true" />
             <element signature="e#806#819#1#PHP" expanded="true" />
             <element signature="e#2443#2470#0#PHP" expanded="true" />
             <element signature="e#3381#3411#0#PHP" expanded="true" />
-            <element signature="e#3722#3748#0#PHP" expanded="true" />
+            <element signature="e#4014#4027#1#PHP" expanded="true" />
+            <element signature="e#5214#5240#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

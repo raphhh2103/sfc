@@ -3,6 +3,9 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>  <script>
+
+
+
         $(function () {
             Highcharts.chart('container', {
 
@@ -12,7 +15,7 @@
                 },
 
                 title: {
-                    text: 'result of Sfc',
+                    text: {{ jobs }},
                     x: -80
                 },
 
@@ -22,7 +25,7 @@
 
                 xAxis: {
                     categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
-                        'Information Technology', 'Administration'],
+                        'Information Technology', 'Administration','yolo'],
                     tickmarkPlacement: 'on',
                     lineWidth: 0
                 },
@@ -46,15 +49,16 @@
                 },
 
                 series: [{
-                    name: 'Allocated Budget',
+                    name: 'required level',
                     data: [4, 4, 4, 4, 4, 4],
                     pointPlacement: 'on',
                     color: 'red'
                 }, {
-                    name: 'Actual Spending',
+                    name: 'Actual level',
                     data: [{{ value }}, 2, 1, 3, 4, 1],
                     pointPlacement: 'on',
-                    color: 'blue'
+                    color: 'blue',
+                    backgroundColors:'blue'
                 }]
 
             });
