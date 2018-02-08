@@ -7,7 +7,7 @@
     <script>
 
         $(function () {
-            Highcharts.chart('container', {
+           charts = Highcharts.chart('container', {
 
                 chart: {
                     polar: true,
@@ -15,7 +15,7 @@
                 },
 
                 title: {
-                    text: '{{ jobs }}',
+                    text: 'yolo',
                     x: -80
                 },
 
@@ -23,15 +23,9 @@
                     size: '80%'
                 },
 
-                xAxis: {
-                    categories: ['{{ sfc1 }}<br>{{ sfc1ig1 }}<br>{{ sfc1ig2 }}<br>{{ sfc1ig3 }}<br>{{ sfc1ig4 }}<br> ',
-                        '{{ sfc2 }}<br>{{ sfc2ig1 }}<br>{{ sfc2ig2 }}<br>{{ sfc2ig3 }}<br>{{ sfc2ig4 }}<br> ',
-                        '{{ sfc3 }}<br>{{ sfc3ig1 }}<br>{{ sfc3ig2 }}<br>{{ sfc3ig3 }}<br>{{ sfc3ig4 }}<br>',
-                       {#'{{ sfc4 }}<br>{{sfc4ig1  }}<br>{{ sfc4ig2 }}<br>{{ sfc4ig3 }}<br>{{ sfc4ig4 }}<br>'#}],
-                    tickmarkPlacement: 'on',
-                    lineWidth: 0
 
-                },
+
+
                 yAxis: {
                     gridLineInterpolation: 'polygone',
                     lineWidth: 0,
@@ -45,7 +39,7 @@
                     backgroundColor: 'rgba(0, 0, 0, 0.85)',
                     style: {
                         color: '#FF0000'
-                        }
+                    }
                 },
 
                 legend: {
@@ -56,6 +50,8 @@
                 },
 
 
+                series: [],
+                credits: {
                 series: [{
 
                     name: 'required level',
@@ -75,9 +71,51 @@
 
             });
         });
+
+
+        {% for s1 in sfc %}
+       $(function () {
+           for(var i = 0; i<= 6; i++)
+           {
+               charts.xAxis[i].add({
+
+                   categories: ['{{ s1.sfc.NameSfc }}<br>{{ s1.indicatorGeneric1 }}<br>{{ s1.indicatorGeneric2 }}<br>{{ s1.indicatorGeneric3 }}<br>{{ s1.indicatorGeneric4 }}<br>      '],
+                   tickmarkPlacement: 'on',
+                   lineWidth: 0
+               });
+               charts.redraw();
+           }}) ;
+
+       $(function () {
+           charts.addSeries({
+
+               name: 'required level',
+               data: [{{ s1.requiredLevel }},{{ s1.requiredLevel }}, {{ s1.requiredLevel }}, {{ s1.requiredLevel }}, {{ s1.requiredLevel }},{{ s1.requiredLevel }}],
+               type: 'area',
+               color: 'rgba(999, 0, 0, 0.75)'
+
+           });
+           charts.redraw();
+       });
+       $(function () {
+           charts.addSeries({
+
+               name: 'Actual level',
+               data: [{{ value }}, 2, 1, 3, 4, 1],
+               type: 'area',
+               color: 'rgba(0, 0, 999, 0.75)'
+           });
+           charts.redraw();
+       });
+
+
+
+        {% endfor %}
+
     </script>
 {% endblock %}
 {% block body %}
+    <div class="container">
     <div class="container" >
 
         <div id="container" style="height: 100%; width: 400px; margin: auto;"></div>
