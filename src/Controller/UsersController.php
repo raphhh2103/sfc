@@ -108,7 +108,6 @@ class UsersController extends Controller
     /**
      * @Route("/former/createLink/{id}", name="create_link")
      * @param {id}
-     * @param {link}
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */

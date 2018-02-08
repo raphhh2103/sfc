@@ -1,27 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{#{% block body %}#}
-    {#<div>#}
-        {#<p>IG1:  {{ IG1 }}#}
-        {#IG2:  {{ IG2 }}#}
-        {#IG3:  {{ IG3 }}#}
-        {#IG4:  {{ IG4 }}</p>#}
-        {#<p>IO1:  {{ IO1 }}#}
-        {#IO2:  {{ IO2 }}#}
-        {#IO3:  {{ IO3 }}#}
-        {#IO4:  {{ IO4 }}</p>#}
-
-
-    {#</div>#}
-    {#<div>#}
-        {#{{ form_start(form) }}#}
-
-
-        {#{{ form_end(form) }}#}
-
-    {#</div>#}
-
-{#{% endblock %}#}
 
 
 {% block stylesheets %}
@@ -30,7 +8,7 @@
             background-color: #224f76;
 
         }
-        .login{
+        .jobSfc{
             box-shadow: 1px 1px 15px 15px #a1c13a;
             background-color: white;
             border-radius: 20px 20px 20px 20px;
@@ -91,7 +69,7 @@
     {#<div class="essai">#}
         {#<a href="{{ path('home') }}">menu principale</a>#}
     {#</div>#}
-    <div class="login">
+    <div class="jobSfc">
         {{ form_start(form) }}
         <h2>Modifier les indicateurs observable et generic</h2>
 

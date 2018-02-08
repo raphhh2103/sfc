@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,7 +46,13 @@ class IndexController extends Controller
      */
     public function home()
     {
-        return $this->render('Home/home.html.twig');
+        $repo = $this->getUser();
+        $role = $repo->getRoles();
+        dump($role);
+
+        return $this->render('Home/home.html.twig', array(
+            'repo' => $role,
+        ));
     }
 
     /**

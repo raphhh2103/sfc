@@ -75,7 +75,7 @@ class SfcsController extends Controller
     }
 
     /**
-     * @Route("/createSfc", name="createSfc")
+     * @Route("admin/createSfc", name="createSfc")
      */
     public function registerAction(Request $request)
     {
