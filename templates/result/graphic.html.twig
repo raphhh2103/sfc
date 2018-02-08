@@ -26,12 +26,15 @@
                 xAxis: {
                     categories: ['{{ sfc1 }}<br>{{ sfc1ig1 }}<br>{{ sfc1ig2 }}<br>{{ sfc1ig3 }}<br>{{ sfc1ig4 }}<br> ',
                         '{{ sfc2 }}<br>{{ sfc2ig1 }}<br>{{ sfc2ig2 }}<br>{{ sfc2ig3 }}<br>{{ sfc2ig4 }}<br> ',
-                        '{{ sfc3 }}<br>{{ sfc3ig1 }}<br>{{ sfc3ig2 }}<br>{{ sfc3ig3 }}<br>{{ sfc3ig4 }}<br>'],
+                        '{{ sfc3 }}<br>{{ sfc3ig1 }}<br>{{ sfc3ig2 }}<br>{{ sfc3ig3 }}<br>{{ sfc3ig4 }}<br>',
+                       {#'{{ sfc4 }}<br>{{sfc4ig1  }}<br>{{ sfc4ig2 }}<br>{{ sfc4ig3 }}<br>{{ sfc4ig4 }}<br>'#}],
                     tickmarkPlacement: 'on',
                     lineWidth: 0
 
                 },
-
+                credits: {
+                    enabled: true
+                },
                 yAxis: {
                     gridLineInterpolation: 'polygone',
                     lineWidth: 0,
@@ -58,7 +61,7 @@
                 series: [{
 
                     name: 'required level',
-                    data: [{{ requiredLevel }}, {{ requiredlevel1 }}, 4, 4, 4, 4],
+                    data: [{{ requiredLevel }},  4, 4, 4, 4],
                     type: 'area',
                     color: 'rgba(999, 0, 0, 0.75)'
                 }, {

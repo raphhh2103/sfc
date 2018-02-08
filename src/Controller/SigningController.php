@@ -91,7 +91,8 @@ class SigningController extends Controller
                 $em->persist($result);
                 $em->flush();
                 $id = $result->getId();
-                $this->redirectToRoute('result_graphic',array('id'=>$id));
+
+                return $this->redirectToRoute('result_graphic',array('id'=>$id));
             }
 
 
@@ -114,7 +115,6 @@ class SigningController extends Controller
         $currentJobSfc3 = null;
         $currentJobSfc4 = null;
         $currentJobSfc5 = null;
-        $currentJobSfc6 = null;
         $value = $result->getValue();
         $user = $this->getUser();
         $compt = 0;
@@ -148,10 +148,7 @@ class SigningController extends Controller
                     $currentJobSfc5 = $values;
                     dump('5');
                 }
-                if ($key === 6){
-                    $currentJobSfc6 = $values;
-                    dump('6');
-                }
+
 
 
 
@@ -195,15 +192,17 @@ class SigningController extends Controller
 //            'sfc5ig3'=>$currentJobSfc4->getIndicatorGeneric3(),
 //            'sfc5ig4'=>$currentJobSfc4->getIndicatorGeneric4(),
 //            'sfc6ig1'=>$currentJobSfc5->getIndicatorGeneric1(),
-//            'sfc6ig2'=>$currentJobSfc2->getIndicatorGeneric2(),
-//            'sfc6ig3'=>$currentJobSfc3->getIndicatorGeneric3(),
-//            'sfc6ig4'=>$currentJobSfc4->getIndicatorGeneric4(),
+//            'sfc6ig2'=>$currentJobSfc5->getIndicatorGeneric2(),
+//            'sfc6ig3'=>$currentJobSfc5->getIndicatorGeneric3(),
+//            'sfc6ig4'=>$currentJobSfc5->getIndicatorGeneric4(),
             'requiredLevel'=>$currentJobSfc->getRequiredLevel(),
-            'requiredlevel1'=>$currentJobSfc1->getRequiredLevel(),
-//            'requiredlevel2'=>$currentJobSfc2->getRequiredLevel(),
-//            'requiredlevel3'=>$currentJobSfc3->getRequiredLevel(),
-//            'requiredlevel4'=>$currentJobSfc4->getRequiredLevel(),
+            'requiredleve2'=>$currentJobSfc1->getRequiredLevel(),
+            'requiredleve3'=>$currentJobSfc2->getRequiredLevel(),
+            'requiredleve4'=>$currentJobSfc3->getRequiredLevel(),
+//            'requiredleve5'=>$currentJobSfc4->getRequiredLevel(),
+//            'requiredlebel6'=>$currentJobSfc5->getRequiredLevel(),
             'jobs'=>$currentJobSfc->getJobs()->getNameJobs(),
+
 
 
         ));
