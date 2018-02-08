@@ -1,25 +1,158 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-
-
-
-        {% if Sfcs|length > 0 %}
-            <ul>
-            {% for sfcs in Sfcs %}
-                {{ sfcs.id }}
-                {{ sfcs.NameSfc }} {{ sfcs.description }}
-                {{ sfcs.indicatorObservable1 }} {{ sfcs.indicatorObservable2 }} {{ sfcs.indicatorObservable3 }}{{ sfcs.indicatorObservable4 }}
-                {{ sfcs.indicatorGeneric1 }} {{ sfcs.indicatorGeneric2 }} {{ sfcs.indicatorGeneric3 }} {{ sfcs.indicatorGeneric4 }}
-                <a href="{{ path('modifSfcs', {"id": sfcs.id}) }}">Modifier</a> <br>
-                <br>
-            {% endfor %}
-            </ul>
-        {% endif %}
 
 
 
 
+        {#{% if Sfcs|length > 0 %}#}
+            {#<ul>#}
+            {#{% for sfcs in Sfcs %}#}
+                {#{{ sfcs.id }}#}
+                {#{{ sfcs.NameSfc }} {{ sfcs.description }}#}
+                {#{{ sfcs.indicatorObservable1 }} {{ sfcs.indicatorObservable2 }} {{ sfcs.indicatorObservable3 }}{{ sfcs.indicatorObservable4 }}#}
+                {#{{ sfcs.indicatorGeneric1 }} {{ sfcs.indicatorGeneric2 }} {{ sfcs.indicatorGeneric3 }} {{ sfcs.indicatorGeneric4 }}#}
+                {#<a href="{{ path('modifSfcs', {"id": sfcs.id}) }}">Modifier</a> <br>#}
+                {#<br>#}
+            {#{% endfor %}#}
+            {#</ul>#}
+        {#{% endif %}#}
+
+
+    {% block stylesheets %}
+        <style>
+            body{
+                background-color: #224f76;
+                color: #FFFFFF;
+
+            }
+            .container{
+                text-align: center;
+
+            }
+            thead, tbody{
+                background-color: white;
+                color: #222222;
+                height: 100%;
+            }
+            .table-fixed{
+                height: 100%;
+            }
+
+
+
+            .tab{
+                margin-top: 100px;
+                min-height:320px;
+                height:320px;/*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
+                min-width:260px;
+                width:100%;/*pour IE qui comprend rien*/
+                overflow-y:scroll;/*pour activer les scrollbarres*/
+                box-shadow: 1px 1px 15px 15px #a1c13a;
+                background-color: white
+                /*border-radius: 20px 20px 20px 20px;*/
+
+
+
+
+            }
+            .titre{
+                margin-top: 100px;
+            }
+
+
+
+
+        </style>
+    {% endblock %}
+
+    {% block body %}
+
+
+        <div class="container">
+            <div class="titre">
+                <h2>SFCS</h2>
+                <p>touts les SFC et leurs description:</p>
+            </div>
+            <input id="string" name="string" type="text" value="" onfocus="" />
+            <input type="submit" value="Rechercher" onclick="searchString()" />
+            <script>
+                function searchString() {
+                    var Sstring = $('#string').val().toLowerCase();
+                    console.log(Sstring);
+                    $("td").css("background", "none");
+                    if (Sstring) {
+
+                        var Sstring = $('#string').val();
+                        $("td:contains('" + Sstring + "')").css("background", "lightgrey");
+                        var n = $("td:contains('" + Sstring + "')").length;
+                        alert( n + " occurence(s) trouvée(s)");
+                        $("td:contains('" + Sstring + "')")[0].scrollIntoView(true);
+                        $('#string').val('');
+
+                    }else{
+                        alert('vide');
+                        $("td:contains(" + Sstring + ")").css("background", "none");
+                    }
+                }
+
+
+
+            </script>
+            <div class="tab">
+
+                <table class="table table-striped table-bordered table-fixed">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>image</th>
+                        <th>SFCS</th>
+                        <th>Description</th>
+                        <th>Observable1</th>
+                        <th>Observable2</th>
+                        <th>Observable3</th>
+                        <th>Observable4</th>
+                        <th>Generic1</th>
+                        <th>Generic2</th>
+                        <th>Generic3</th>
+                        <th>Generic4</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for sfcs in Sfcs %}#
+                        <tr>
+                            <td>{{ sfcs.id }}</td>
+                            {% if not sfcs.iconPath %}
+                            <td></td>
+                            {% endif %}
+                            {% if sfcs.iconPath %}
+                            <td><img src="{{ sfcs.iconPath }}" style="width: 50px; height: 50px"></td>
+                            {% endif %}
+                            <td>{{ sfcs.NameSfc }}</td>
+                            <td>{{ sfcs.description }}</td>
+                            <td>{{ sfcs.indicatorObservable1 }}</td>
+                            <td>{{ sfcs.indicatorObservable2 }}</td>
+                            <td>{{ sfcs.indicatorObservable3 }}</td>
+                            <td>{{ sfcs.indicatorObservable4 }}</td>
+                            <td>{{ sfcs.indicatorGeneric1 }}</td>
+                            <td>{{ sfcs.indicatorGeneric2 }}</td>
+                            <td>{{ sfcs.indicatorGeneric3 }}</td>
+                            <td>{{ sfcs.indicatorGeneric4 }}</td>
+
+                            <td><a href="{{ path('modifJobs', {"id": sfcs.id}) }}">Modifier</a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    {% endblock %}
 
 
 
@@ -27,4 +160,7 @@
 
 
 
-{% endblock %}
+
+
+
+

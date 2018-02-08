@@ -1,17 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <div>
+{#{% block body %}#}
+    {#<div>#}
 
+        {#{{ form_start(form) }}#}
+        {#{{ form_row(form.Jobs) }}#}
+        {#{{ form_row(form.Sfc) }}#}
+
+
+        {#<button type="submit">Enregistrer</button>#}
+        {#{{ form_end(form) }}#}
+
+
+    {#</div>#}
+
+{#{% endblock %}#}
+
+{% block stylesheets %}
+    <style>
+        body{
+            background-color: #224f76;
+
+        }
+        .login{
+            box-shadow: 1px 1px 15px 15px #a1c13a;
+            background-color: white;
+            border-radius: 20px 20px 20px 20px;
+            text-align: center;
+            margin: auto;
+            border: solid 1px;
+            height: 90%;
+            width: 30%;
+            margin-top: 170px;
+        }
+        h2{
+            padding-top: 60px;
+            margin-bottom: 60px;
+        }
+        button{
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .input2{
+            height: 150px;
+            width: 50%;
+            margin-top: 15px;
+            resize: none;
+        }
+
+
+
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="login">
+        <h2>Créer un nouveau Job_Sfc</h2>
         {{ form_start(form) }}
+
         {{ form_row(form.Jobs) }}
         {{ form_row(form.Sfc) }}
+        {{ form_row(form.Skills) }}
 
 
-        <button type="submit">Enregistrer</button>
+        <button type="submit">Créer</button>
         {{ form_end(form) }}
-
-
     </div>
 
 {% endblock %}

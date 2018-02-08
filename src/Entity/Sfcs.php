@@ -356,7 +356,7 @@ class Sfcs
     /**
      * @return string
      */
-    public function getIconPath(): string
+    public function getIconPath(): ?string
     {
         return $this->IconPath;
     }
