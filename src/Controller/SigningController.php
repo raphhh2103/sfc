@@ -113,7 +113,6 @@ class SigningController extends Controller
         $currentJobSfc3 = null;
         $currentJobSfc4 = null;
         $currentJobSfc5 = null;
-        $currentJobSfc6 = null;
         $value = $result->getValue();
         $user = $this->getUser();
         $compt = 0;
@@ -195,6 +194,7 @@ class SigningController extends Controller
 //            'requiredlevel3'=>$currentJobSfc3->getRequiredLevel(),
 //            'requiredlevel4'=>$currentJobSfc4->getRequiredLevel(),
             'jobs' => $currentJobSfc->getJobs()->getNameJobs(),
+
 
 
         ));
