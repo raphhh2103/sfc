@@ -30,12 +30,12 @@ class SigningController extends Controller
         foreach ($jobsfc as $key => $value) {
 //            dump($value);
             foreach ($userJobs as $k => $v) {
-                    dump('0');
+                dump('0');
                 if ($v->getFormateur() == $this->getUser()) {
                     dump('1');
 
                     $j = $value->getUser();
-                        $u = $value;
+                    $u = $value;
 //                dump($value);
 
                     if ($j->getId() === $this->getUser()->getId()) {
@@ -56,7 +56,9 @@ class SigningController extends Controller
                         $ems->flush();
                         dump($result);
                         $id = $result->getId();
-                        return $this->redirectToRoute('result_form_graphic',array('id'=>$id));
+                        return $this->redirectToRoute('result_form_graphic', array('id' => $id));
+                    } else {
+                        return $this->redirectToRoute('home');
                     }
                 }
             }
@@ -76,29 +78,26 @@ class SigningController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function updateResultAction(Request $request,Results $result)
+    public function updateResultAction(Request $request, Results $result)
     {
 
         $form = $this->createFormBuilder($result)
-            ->add('value',IntegerType::class)
-            ->add('save',SubmitType::class,array('label'=>'save'))
+            ->add('value', IntegerType::class)
+            ->add('save', SubmitType::class, array('label' => 'save'))
             ->getForm();
         $form->handleRequest($request);
 
 
-            if ($form->isSubmitted() && $form->isValid()){
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($result);
-                $em->flush();
-                $id = $result->getId();
-                $this->redirectToRoute('result_graphic',array('id'=>$id));
-            }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($result);
+            $em->flush();
+            $id = $result->getId();
+            return $this->redirectToRoute('result_graphic', array('id' => $id));
+        }
 
 
-
-
-
-        return $this->render('result/formGraphic.html.twig',array('form'=>$form->createView()));
+        return $this->render('result/formGraphic.html.twig', array('form' => $form->createView()));
     }
 
     /**
@@ -120,72 +119,64 @@ class SigningController extends Controller
         $compt = 0;
         $jobSfc = $this->getDoctrine()->getRepository('App:JobsSfc')->findAll();
 //        dump($jobSfc);
-        foreach ($jobSfc as $key=>$values){
+        foreach ($jobSfc as $key => $values) {
 //            dump($values);
-            if ($values->getUser() === $user ){
+            if ($values->getUser() === $user) {
                 if ($key === 0)
-                $currentJobSfc =  $values ;
+                    $currentJobSfc = $values;
 //                dump($currentJobSfc);
                 dump('0');
-                if ($key === 1){
+                if ($key === 1) {
                     $currentJobSfc1 = $values;
 //                    dump($currentJobSfc1);
                     dump('1');
                 }
-                if ($key === 2){
+                if ($key === 2) {
                     $currentJobSfc2 = $values;
                     dump('2');
                 }
-                if ($key === 3){
+                if ($key === 3) {
                     $currentJobSfc3 = $values;
                     dump('3');
                 }
-                if ($key === 4){
+                if ($key === 4) {
                     $currentJobSfc4 = $values;
                     dump('4');
                 }
-                if ($key === 5){
+                if ($key === 5) {
                     $currentJobSfc5 = $values;
                     dump('5');
                 }
-                if ($key === 6){
+                if ($key === 6) {
                     $currentJobSfc6 = $values;
                     dump('6');
                 }
-
 
 
             }
         }
 
 
-
-
-
-
-
-
-
-        return $this->render('result/graphic.html.twig',array(
-            'value'=>$value,
-            'sfc1'=>$currentJobSfc->getSfc()->getNameSfc(),
-            'sfc2'=>$currentJobSfc1->getSfc()->getNameSfc(),
-            'sfc3'=>$currentJobSfc2->getSfc()->getNameSfc(),
+        return $this->render('result/graphic.html.twig', array(
+            'value' => $value,
+            'sfc1' => $currentJobSfc->getSfc()->getNameSfc(),
+            'sfc2' => $currentJobSfc1->getSfc()->getNameSfc(),
+            'sfc3' => $currentJobSfc2->getSfc()->getNameSfc(),
 //            'sfc4'=>$currentJobSfc3->getSfc()->getNameSfc(),
 //            'sfc5'=>$currentJobSfc4->getSfc()->getNameSfc(),
 //            'sfc6'=>$currentJobSfc5->getSfc()->getNameSfc(),
-            'sfc1ig1'=>$currentJobSfc->getIndicatorGeneric1(),
-            'sfc1ig2'=>$currentJobSfc->getIndicatorGeneric2(),
-            'sfc1ig3'=>$currentJobSfc->getIndicatorGeneric3(),
-            'sfc1ig4'=>$currentJobSfc->getIndicatorGeneric4(),
-            'sfc2ig1'=>$currentJobSfc1->getIndicatorGeneric1(),
-            'sfc2ig2'=>$currentJobSfc1->getIndicatorGeneric2(),
-            'sfc2ig3'=>$currentJobSfc1->getIndicatorGeneric3(),
-            'sfc2ig4'=>$currentJobSfc1->getIndicatorGeneric4(),
-            'sfc3ig1'=>$currentJobSfc2->getIndicatorGeneric1(),
-            'sfc3ig2'=>$currentJobSfc2->getIndicatorGeneric2(),
-            'sfc3ig3'=>$currentJobSfc2->getIndicatorGeneric3(),
-            'sfc3ig4'=>$currentJobSfc2->getIndicatorGeneric4(),
+            'sfc1ig1' => $currentJobSfc->getIndicatorGeneric1(),
+            'sfc1ig2' => $currentJobSfc->getIndicatorGeneric2(),
+            'sfc1ig3' => $currentJobSfc->getIndicatorGeneric3(),
+            'sfc1ig4' => $currentJobSfc->getIndicatorGeneric4(),
+            'sfc2ig1' => $currentJobSfc1->getIndicatorGeneric1(),
+            'sfc2ig2' => $currentJobSfc1->getIndicatorGeneric2(),
+            'sfc2ig3' => $currentJobSfc1->getIndicatorGeneric3(),
+            'sfc2ig4' => $currentJobSfc1->getIndicatorGeneric4(),
+            'sfc3ig1' => $currentJobSfc2->getIndicatorGeneric1(),
+            'sfc3ig2' => $currentJobSfc2->getIndicatorGeneric2(),
+            'sfc3ig3' => $currentJobSfc2->getIndicatorGeneric3(),
+            'sfc3ig4' => $currentJobSfc2->getIndicatorGeneric4(),
 //            'sfc4ig1'=>$currentJobSfc3->getIndicatorGeneric1(),
 //            'sfc4ig2'=>$currentJobSfc3->getIndicatorGeneric2(),
 //            'sfc4ig3'=>$currentJobSfc3->getIndicatorGeneric3(),
@@ -198,24 +189,16 @@ class SigningController extends Controller
 //            'sfc6ig2'=>$currentJobSfc2->getIndicatorGeneric2(),
 //            'sfc6ig3'=>$currentJobSfc3->getIndicatorGeneric3(),
 //            'sfc6ig4'=>$currentJobSfc4->getIndicatorGeneric4(),
-            'requiredLevel'=>$currentJobSfc->getRequiredLevel(),
-            'requiredlevel1'=>$currentJobSfc1->getRequiredLevel(),
+            'requiredLevel' => $currentJobSfc->getRequiredLevel(),
+            'requiredlevel1' => $currentJobSfc1->getRequiredLevel(),
 //            'requiredlevel2'=>$currentJobSfc2->getRequiredLevel(),
 //            'requiredlevel3'=>$currentJobSfc3->getRequiredLevel(),
 //            'requiredlevel4'=>$currentJobSfc4->getRequiredLevel(),
-            'jobs'=>$currentJobSfc->getJobs()->getNameJobs(),
+            'jobs' => $currentJobSfc->getJobs()->getNameJobs(),
 
 
         ));
     }
-
-
-
-
-
-
-
-
 
 
 }
