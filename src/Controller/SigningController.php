@@ -108,64 +108,40 @@ class SigningController extends Controller
     public function ResultForGraphicalAction(Results $result)
     {
         $currentJobSfc = null;
-        $currentJobSfc1 = null;
-        $currentJobSfc2 = null;
-        $currentJobSfc3 = null;
-        $currentJobSfc4 = null;
-        $currentJobSfc5 = null;
+        $val = [];
         $value = $result->getValue();
         $user = $this->getUser();
         $compt = 0;
         $jobSfc = $this->getDoctrine()->getRepository('App:JobsSfc')->findAll();
+        $results = $this->getDoctrine()->getRepository('App:Results')->findAll();
+
 //        dump($jobSfc);
         foreach ($jobSfc as $key => $values) {
 //            dump($values);
             if ($values->getUser() === $user) {
-                if ($key === 0) {
-                    $currentJobSfc[0] = $values;
-//                dump($currentJobSfc);
-                    dump('0');
-                }
-                if ($key === 1) {
-                    $currentJobSfc[1] = $values;
-//                    dump($currentJobSfc1);
-                    dump('1');
-                }
-                if ($key === 2) {
-                    $currentJobSfc[2] = $values;
-
-                    dump('2');
-                }
-                if ($key === 3) {
-                    $currentJobSfc[3] = $values;
-                    dump($currentJobSfc);
+                $currentJobSfc[$key] = $values;
 
                 }
-                if ($key === 4) {
-                    $currentJobSfc[4] = $values;
-                    dump('4');
-
-                }
-                if ($key === 5) {
-                    $currentJobSfc[5] = $values;
-                    dump('5');
-
-                }
-
-
-                return $this->render('result/graphic.html.twig', array(
-                    'value' => $value,
-                    'sfc'=>$currentJobSfc,
-                    'jobs'=>$currentJobSfc[0]->getJobs(),
-                ));
+            foreach ($results as $k => $v){
+                    if ($v->getJobSfc()=== $currentJobSfc[$key]){
+                        $val[$key] = $v;
+                    }
             }
+                 dump($currentJobSfc);
+//                return $this->render('result/graphic.html.twig', array(
+//                    'value' => $value,
+//                    'sfc'=>$currentJobSfc,
+//                    'jobs'=>$currentJobSfc[0]->getJobs(),
+//                ));
+//            }
         }
 
 
+
         return $this->render('result/graphic.html.twig', array(
-            'value' => $value,
+            'result'=>$results,
+            'val'=>$val,
             'sfc'=>$currentJobSfc,
-            'jobs'=>$currentJobSfc[0]->getJobs(),
         ));
     }
 
