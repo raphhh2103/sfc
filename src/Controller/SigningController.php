@@ -56,7 +56,7 @@ class SigningController extends Controller
                         $ems->flush();
                         dump($result);
                         $id = $result->getId();
-                        return $this->redirectToRoute('result_form_graphic', array('id' => $id));
+                        return $this->redirectToRoute('result_graphic', array('id' => $id));
                     } else {
                         return $this->redirectToRoute('home');
                     }

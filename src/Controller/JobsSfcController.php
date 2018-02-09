@@ -25,15 +25,6 @@ class JobsSfcController extends Controller
     private $key = 'yolo';
 
 
-    /**
-     * @Route("/jobs/sfc", name="jobs_sfc")
-     */
-    public function index()
-    {
-
-        // replace this line with your own code!
-        return $this->render('@Maker/demoPage.html.twig', [ 'path' => str_replace($this->getParameter('kernel.project_dir').'/', '', __FILE__) ]);
-    }
 
 
     /**
@@ -187,7 +178,7 @@ class JobsSfcController extends Controller
             $em->persist($j);
             $em->flush();
             $id = $j->getId();
-
+            return $this->redirectToRoute('jobs_sfc');
 
         }
 //            $id = $_POST['id'] ;

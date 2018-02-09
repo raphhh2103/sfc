@@ -48,7 +48,7 @@ class IndexController extends Controller
     {
         $repo = $this->getUser();
         $role = $repo->getRoles();
-        dump($role);
+//        dump($role);
 
         return $this->render('Home/home.html.twig', array(
             'repo' => $role,

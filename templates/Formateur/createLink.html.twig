@@ -42,6 +42,9 @@
             margin-top: 15px;
             resize: none;
         }
+        p{
+            margin-top: 20px;
+        }
 
 
 
@@ -54,7 +57,10 @@
         {{ form_start(forms) }}
         {#{{ form_widget(forms) }}#}
         {{ form_row(forms.Jobs) }}
-        <a href="{{ link }}">{{ link }}</a>
+        <p>Adresse a envoyer au stagiaire <br> ({{ link }})</p>
+        {#<p></p>#}
+        {#<a href="{{ link }}">{{ link }}</a>#}
+
         <a href="{{ path('former_add') }}"><button>add a new student !</button></a>
         {{ form_row(forms.save) }}
         {{ form_end(forms) }}
