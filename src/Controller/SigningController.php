@@ -80,21 +80,23 @@ class SigningController extends Controller
      */
     public function updateResultAction(Request $request, Results $result)
     {
+        $res = $this->getDoctrine()->getRepository('App:Results')->findAll();
+        dump($res);
 
-        $form = $this->createFormBuilder($result)
-            ->add('value', IntegerType::class)
-            ->add('save', SubmitType::class, array('label' => 'save'))
-            ->getForm();
-        $form->handleRequest($request);
+                $form = $this->createFormBuilder($result)
+                    ->add('value', IntegerType::class)
+                    ->add('save', SubmitType::class, array('label' => 'save'))
+                    ->getForm();
+                $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($result);
-            $em->flush();
-            $id = $result->getId();
-            return $this->redirectToRoute('result_graphic', array('id' => $id));
-        }
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($result);
+                    $em->flush();
+                    $id = $result->getId();
+                    return $this->redirectToRoute('result_graphic', array('id' => $id));
+                }
 
 
         return $this->render('result/formGraphic.html.twig', array('form' => $form->createView()));
@@ -121,13 +123,13 @@ class SigningController extends Controller
             if ($values->getUser() === $user) {
                 $currentJobSfc[$key] = $values;
 
-                }
-            foreach ($results as $k => $v){
-                    if ($v->getJobSfc()=== $currentJobSfc[$key]){
-                        $val[$key] = $v;
-                    }
             }
-                 dump($currentJobSfc);
+            foreach ($results as $k => $v) {
+                if ($v->getJobSfc() === $currentJobSfc[$key]) {
+                    $val[$key] = $v;
+                }
+            }
+            dump($currentJobSfc);
 //                return $this->render('result/graphic.html.twig', array(
 //                    'value' => $value,
 //                    'sfc'=>$currentJobSfc,
@@ -137,11 +139,10 @@ class SigningController extends Controller
         }
 
 
-
         return $this->render('result/graphic.html.twig', array(
-            'result'=>$results,
-            'val'=>$val,
-            'sfc'=>$currentJobSfc,
+            'result' => $results,
+            'val' => $val,
+            'sfc' => $currentJobSfc,
         ));
     }
 
